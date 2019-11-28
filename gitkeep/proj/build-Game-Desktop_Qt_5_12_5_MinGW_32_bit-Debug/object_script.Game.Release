@@ -1,0 +1,13 @@
+release/BuildSmallTower.o
+release/Enemy.o
+release/ExitBtn.o
+release/Player.o
+release/TowerSmall.o
+release/TowerSmallBullet.o
+release/main.o
+release/qrc_imgs.o
+release/moc_BuildSmallTower.o
+release/moc_Enemy.o
+release/moc_Player.o
+release/moc_TowerSmall.o
+release/moc_TowerSmallBullet.o
