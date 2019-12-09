@@ -9,6 +9,8 @@
 #include <iostream>
 #include <vector>
 #include "TowerSmallBullet.h"
+#include "CannonBullet.h"
+#include "Bomb.h"
 #include "Player.h"
 #include <iostream>
 
@@ -19,7 +21,7 @@ Enemy::Enemy():QObject(),  QGraphicsPixmapItem()
 
     //Pozicija protivnika je random
     int random_n = rand() % 500; // sa %500 ogranicavamo da se protivnik ne pravi na Y>500
-    setPos(0,random_n);
+    setPos(-20,random_n);
     //Crtamo protivnika
     QPixmap img(":/imgs/character_zombie_walk1.png");
     setPixmap(img.scaled(QSize(80,80)));
@@ -36,15 +38,19 @@ void Enemy::move(){
     //HIT DETECTION preuzet sa Stackoverflow-a
     QList<QGraphicsItem *> colliding_items = collidingItems();
         for (int i = 0, n = colliding_items.size(); i < n; ++i){
-            if (typeid(*(colliding_items[i])) == typeid(TowerSmallBullet)){
+            if (typeid(*(colliding_items[i])) == typeid(TowerSmallBullet) || typeid(*(colliding_items[i])) == typeid(CannonBullet1) || typeid(*(colliding_items[i])) == typeid(CannonBullet2)){
                 this->HP -=1;
                 if(this->HP==0){
-                   // Player::coins +=5;
+                    scene()->removeItem(this);
+                    delete this;
+                    return;
+                }
+            }
+            if (typeid(*(colliding_items[i])) == typeid(Bomb)){
                 scene()->removeItem(this);
                 delete this;
-              // std:: cout << Player::coins << endl;
                 return;
-                }
+
             }
         }
     setPos(x()+3,y());

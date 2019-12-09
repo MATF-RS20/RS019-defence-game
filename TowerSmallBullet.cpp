@@ -4,6 +4,8 @@
 #include "TowerSmallBullet.h"
 #include <QTimer>
 #include "Enemy.h"
+#include "Robot.h"
+#include "WomanEnemy.h"
 TowerSmallBullet::TowerSmallBullet(int x,int y):QObject(),QGraphicsPixmapItem(){
     QPixmap img(":/imgs/shotThin.png");
     setPixmap(img.scaled(QSize(40,10)));
@@ -18,7 +20,7 @@ void TowerSmallBullet::move_bullet(){
     // COALISION DETECTION : preuzeto sa STACKOVERFLOW
     QList<QGraphicsItem *> colliding_items = collidingItems();
         for (int i = 0, n = colliding_items.size(); i < n; ++i){
-            if (typeid(*(colliding_items[i])) == typeid(Enemy)){
+            if (typeid(*(colliding_items[i])) == typeid(Enemy) || typeid(*(colliding_items[i])) == typeid(WomanEnemy) || typeid(*(colliding_items[i])) == typeid(Robot)){
                 scene()->removeItem(this);
                 delete this;
                 return;

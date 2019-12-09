@@ -22,7 +22,14 @@ SOURCES += \
     Player.cpp \
     TowerSmall.cpp \
     TowerSmallBullet.cpp \
-    main.cpp
+    main.cpp \
+    Bomb.cpp \
+    BuildBomb.cpp \
+    BuildCannon.cpp \
+    Cannon.cpp \
+    CannonBullet.cpp \
+    Robot.cpp \
+    WomanEnemy.cpp
 
 HEADERS += \
     BuildSmallTower.h \
@@ -30,7 +37,14 @@ HEADERS += \
     ExitBtn.h \
     Player.h \
     TowerSmall.h \
-    TowerSmallBullet.h
+    TowerSmallBullet.h \
+    Bomb.h \
+    BuildBomb.h \
+    BuildCannon.h \
+    Cannon.h \
+    CannonBullet.h \
+    Robot.h \
+    WomanEnemy.h
 
 FORMS += \
     mainwindow.ui

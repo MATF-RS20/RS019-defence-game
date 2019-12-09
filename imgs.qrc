@@ -1,12 +1,37 @@
 <RCC>
     <qresource prefix="/imgs">
         <file>towerRound_sampleF_E.png</file>
-        <file>../blue_boxCross.png</file>
         <file>character_zombie_walk1.png</file>
         <file>character_zombie_walk2.png</file>
         <file>character_zombie_walk3.png</file>
         <file>blue_button06.png</file>
         <file>blue_panel.png</file>
         <file>shotThin.png</file>
+        <file>blue_boxCross.png</file>
+        <file>bomb.png</file>
+        <file>character_femaleAdventurer_walk0.png</file>
+        <file>character_femaleAdventurer_walk1.png</file>
+        <file>character_femaleAdventurer_walk2.png</file>
+        <file>character_femaleAdventurer_walk3.png</file>
+        <file>character_femaleAdventurer_walk4.png</file>
+        <file>character_femaleAdventurer_walk5.png</file>
+        <file>character_femaleAdventurer_walk6.png</file>
+        <file>character_femaleAdventurer_walk7.png</file>
+        <file>character_robot_walk0.png</file>
+        <file>character_robot_walk1.png</file>
+        <file>character_robot_walk2.png</file>
+        <file>character_robot_walk3.png</file>
+        <file>character_robot_walk4.png</file>
+        <file>character_robot_walk5.png</file>
+        <file>character_robot_walk6.png</file>
+        <file>character_robot_walk7.png</file>
+        <file>enemy_ufoPurpleWeapon.png</file>
+        <file>explosion1.png</file>
+        <file>explosion2.png</file>
+        <file>explosion3.png</file>
+        <file>explosion4.png</file>
+        <file>explosion5.png</file>
+        <file>m1.png</file>
+        <file>m2.png</file>
     </qresource>
 </RCC>

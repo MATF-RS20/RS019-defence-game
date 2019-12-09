@@ -10,6 +10,8 @@
 #include "ExitBtn.h"
 #include <QPixmap>
 #include "BuildSmallTower.h"
+#include "BuildBomb.h"
+#include "BuildCannon.h"
 #include <iostream>
 QGraphicsPixmapItem* UIButton(int x,int y){
     QPixmap img(":/imgs/blue_button06.png");
@@ -34,12 +36,12 @@ int main(int argc, char *argv[])
     //Prikazujemo scenu
     QGraphicsView * view = new QGraphicsView(scene);
     view->show();
-    view->setFixedSize(1366,700);
+    view->setFixedSize(1300,700);
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->showFullScreen();
-     view->setMouseTracking(true);
-    scene->setSceneRect(0,0,1366,700);
+    view->setMouseTracking(true);
+    scene->setSceneRect(0,0,1300,700);
 
     // Dugme za exit
     ExitBtn * exit = new ExitBtn();
@@ -54,20 +56,26 @@ int main(int argc, char *argv[])
     // Okviri za kule (ukras, zato ne pravimo zasebnu klasu vec samo fju za iscrtavanje)
     // shift za 150px
     QGraphicsPixmapItem * box ;
-    box= UIButton(10,625);
+    box= UIButton(10,605);
     scene->addItem(box);
-    box = UIButton(160,625);
+    box = UIButton(160,605);
     scene->addItem(box);
-    box= UIButton(310,625);
+    box= UIButton(310,605);
     scene->addItem(box);
-    box= UIButton(460,625);
+    box= UIButton(460,605);
     scene->addItem(box);
-    box= UIButton(610,625);
+    box= UIButton(610,605);
     scene->addItem(box);
-    box= UIButton(760,625);
+    box= UIButton(760,605);
     scene->addItem(box);
     // Dugme za pravljenje malih kula
     BuildSmallTower * st = new BuildSmallTower();
+    // Dugme za pravljenje topova
+    BuildCannon * cannon = new BuildCannon();
+    scene->addItem(cannon);
+    // Dugme za pravljenje bombi
+    BuildBomb * bomb = new BuildBomb();
+    scene->addItem(bomb);
     scene->addItem(st);
 
 

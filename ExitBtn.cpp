@@ -7,7 +7,7 @@ ExitBtn::ExitBtn(): QGraphicsPixmapItem(){
     //Dugme za exit
 
     setPixmap(QPixmap(":/imgs/blue_boxCross.png"));
-    setPos(1320,-20);
+    setPos(1240,10);
 }
 
 void ExitBtn::mousePressEvent(QGraphicsSceneMouseEvent *event){

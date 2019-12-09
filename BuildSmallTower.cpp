@@ -12,7 +12,7 @@ BuildSmallTower::BuildSmallTower():QObject(), QGraphicsPixmapItem()
     // Pravimo ikonicu na ekranu za izgradnju kule
 
    QPixmap img(":/imgs/towerRound_sampleF_E.png");
-   setPixmap(img.scaled(QSize(200,200)));
+   setPixmap(img.scaled(QSize(200,170)));
    setPos(-40,565);
 }
 void BuildSmallTower::mousePressEvent(QGraphicsSceneMouseEvent *event){
