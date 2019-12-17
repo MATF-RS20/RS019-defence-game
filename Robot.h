@@ -10,6 +10,8 @@ public:
     Robot();
     int n=1;
     int HP = 1;
+    //odredjuje brzinu kretanja robota
+    int k=8;
    // static std::vector<class Enemy*>cord_list; // Lista (y) kordinata protivnika
 public slots:
     void move();

@@ -29,7 +29,14 @@ SOURCES += \
     Cannon.cpp \
     CannonBullet.cpp \
     Robot.cpp \
-    WomanEnemy.cpp
+    WomanEnemy.cpp \
+    BuildHole.cpp \
+    BuildRemover.cpp \
+    BuildWeapon.cpp \
+    Hole.cpp \
+    Remover.cpp \
+    Weapon.cpp \
+    WeaponBullets.cpp
 
 HEADERS += \
     BuildSmallTower.h \
@@ -44,7 +51,14 @@ HEADERS += \
     Cannon.h \
     CannonBullet.h \
     Robot.h \
-    WomanEnemy.h
+    WomanEnemy.h \
+    BuildHole.h \
+    BuildRemover.h \
+    BuildWeapon.h \
+    Hole.h \
+    Weapon.h \
+    WeaponBullets.h \
+    Remover.h
 
 FORMS += \
     mainwindow.ui

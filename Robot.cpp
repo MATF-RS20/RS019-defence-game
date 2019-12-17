@@ -11,6 +11,8 @@
 #include "TowerSmallBullet.h"
 #include "CannonBullet.h"
 #include "Bomb.h"
+#include"Hole.h"
+#include"WeaponBullets.h"
 Robot::Robot():QObject(),  QGraphicsPixmapItem()
 {
 
@@ -35,7 +37,12 @@ void Robot::move(){
 
     QList<QGraphicsItem *> colliding_items = collidingItems();
         for (int i = 0, n = colliding_items.size(); i < n; ++i){
-            if (typeid(*(colliding_items[i])) == typeid(TowerSmallBullet) || typeid(*(colliding_items[i])) == typeid(CannonBullet1) || typeid(*(colliding_items[i])) == typeid(CannonBullet2)){
+            if (typeid(*(colliding_items[i])) == typeid(TowerSmallBullet)
+                    || typeid(*(colliding_items[i])) == typeid(CannonBullet1)
+                    || typeid(*(colliding_items[i])) == typeid(CannonBullet2)
+                    || typeid(*(colliding_items[i])) == typeid(WeaponBullet1)
+                    || typeid(*(colliding_items[i])) == typeid(WeaponBullet2)
+                    || typeid(*(colliding_items[i])) == typeid(WeaponBullet3)){
                 this->HP -=1;
                 if(this->HP==0){
                     scene()->removeItem(this);
@@ -48,9 +55,12 @@ void Robot::move(){
                 delete this;
                 return;
             }
+            if (typeid(*(colliding_items[i])) == typeid(Hole)){
+                k=4;
+            }
         }
 
-    setPos(x()+8,y());
+    setPos(x()+k,y());
 
     if(pos().x() > 800 ){
         scene()->removeItem(this);

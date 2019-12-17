@@ -10,6 +10,8 @@ public:
     WomanEnemy();
     int n=1;
     int HP = 1;
+    //odredjuje brzinu kretanja zene neprijatelja
+    int k=6;
    // static std::vector<class Enemy*>cord_list; // Lista (y) kordinata protivnika
 public slots:
     void move();

@@ -12,6 +12,9 @@
 #include "BuildSmallTower.h"
 #include "BuildBomb.h"
 #include "BuildCannon.h"
+#include "BuildHole.h"
+#include"BuildRemover.h"
+#include"BuildWeapon.h"
 #include <iostream>
 QGraphicsPixmapItem* UIButton(int x,int y){
     QPixmap img(":/imgs/blue_button06.png");
@@ -77,7 +80,17 @@ int main(int argc, char *argv[])
     BuildBomb * bomb = new BuildBomb();
     scene->addItem(bomb);
     scene->addItem(st);
+    // Dugme za pravljenje rupa
+    BuildHole * hole = new BuildHole();
+    scene->addItem(hole);
 
+    // Dugme za pravljenje oruzja
+    BuildWeapon * weapon = new BuildWeapon();
+    scene->addItem(weapon);
+
+    // Dugme za pravljenje brisaca
+    BuildRemover * remover = new BuildRemover();
+    scene->addItem(remover);
 
     //Protivnici se stvaraju na nekom intervalu
     QTimer * timer = new QTimer();
