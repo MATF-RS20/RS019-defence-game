@@ -9,14 +9,14 @@
 #include <iostream>
 BuildWeapon::BuildWeapon():QObject(), QGraphicsPixmapItem()
 {
-    // Pravimo ikonicu na ekranu za izgradnju oruzja
+    // Pravimo ikonicu na ekranu za izgradnju oruzje
 
    QPixmap img(":/imgs/weapon2.png");
    setPixmap(img.scaled(QSize(40,40)));
-   setPos(340,630);
+   setPos(340,633);
 }
 void BuildWeapon::mousePressEvent(QGraphicsSceneMouseEvent *event){
-    // Kada kliknemo na ikonicu za izgradnju oruzja i drzimo kursor on postaje oruzje
+    // Kada kliknemo na ikonicu za izgradnju oruzje i drzimo kursor on postaje oruzje
 
      QPixmap img(":/imgs/weapon2.png");
      setCursor(img.scaled(QSize(40,40)));

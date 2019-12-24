@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "Robot.h"
 #include "WomanEnemy.h"
+#include "Zombie.h"
 TowerSmallBullet::TowerSmallBullet(int x,int y):QObject(),QGraphicsPixmapItem(){
     QPixmap img(":/imgs/shotThin.png");
     setPixmap(img.scaled(QSize(40,10)));

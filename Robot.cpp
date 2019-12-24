@@ -8,18 +8,23 @@
 #include <QGraphicsPixmapItem>
 #include <iostream>
 #include <vector>
+#include <time.h>
+#include <unistd.h>
+#include <ctime>
 #include "TowerSmallBullet.h"
 #include "CannonBullet.h"
+#include "Player.h"
+#include "Weapon.h"
+#include "WeaponBullets.h"
 #include "Bomb.h"
-#include"Hole.h"
-#include"WeaponBullets.h"
-#include "TankRocket.h"
+#include "Hole.h"
+
+
 Robot::Robot():QObject(),  QGraphicsPixmapItem()
 {
 
-    //Pozicija protivnika je random
     int random_n = rand() % 500; // sa %500 ogranicavamo da se protivnik ne pravi na Y>500
-    setPos(-20,random_n);
+    setPos(-70,random_n);
     //Crtamo protivnika
     QPixmap img(":/imgs/character_robot_walk0.png");
     setPixmap(img.scaled(QSize(80,80)));
@@ -45,30 +50,32 @@ void Robot::move(){
                     || typeid(*(colliding_items[i])) == typeid(WeaponBullet2)
                     || typeid(*(colliding_items[i])) == typeid(WeaponBullet3)){
                 this->HP -=1;
-                if(this->HP<=0){
+                if(this->HP==0){
                     scene()->removeItem(this);
                     delete this;
                     return;
                 }
             }
-            if (typeid(*(colliding_items[i])) == typeid(Bomb)
-                || typeid(*(colliding_items[i])) == typeid(TankRocket)){
+            if (typeid(*(colliding_items[i])) == typeid(Bomb)){
                 scene()->removeItem(this);
                 delete this;
                 return;
             }
+
             if (typeid(*(colliding_items[i])) == typeid(Hole)){
                 k=4;
             }
+
         }
 
     setPos(x()+k,y());
 
-    if(pos().x() > 800 ){
-        scene()->removeItem(this);
-        delete this;
+    if(pos().x() > 800 && !(this->escaped)){
+        Player::lifes-=1;
+        this->escaped = true;
     }
     //Sa svakim otkucajem tajmere protivnik se pomera i menja se slika hoda
+
     if (this->n == 1){
         QPixmap img(":/imgs/character_robot_walk1.png");
         setPixmap(img.scaled(QSize(80,80)));
@@ -101,9 +108,10 @@ void Robot::move(){
         QPixmap img(":/imgs/character_robot_walk0.png");
         setPixmap(img.scaled(QSize(80,80)));
         this->n=1;
-    }
 
+    }
 }
+
 
 
 

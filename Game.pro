@@ -17,12 +17,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     BuildSmallTower.cpp \
-    BuildTank.cpp \
     Enemy.cpp \
     ExitBtn.cpp \
     Player.cpp \
-    Tank.cpp \
-    TankRocket.cpp \
     TowerSmall.cpp \
     TowerSmallBullet.cpp \
     main.cpp \
@@ -33,22 +30,22 @@ SOURCES += \
     CannonBullet.cpp \
     Robot.cpp \
     WomanEnemy.cpp \
-    BuildHole.cpp \
+    Lifes.cpp \
+    Remover.cpp \
     BuildRemover.cpp \
     BuildWeapon.cpp \
-    Hole.cpp \
-    Remover.cpp \
     Weapon.cpp \
-    WeaponBullets.cpp
+    WeaponBullets.cpp \
+    Hole.cpp \
+    BuildHole.cpp \
+    PlayAgain.cpp \
+    Zombie.cpp
 
 HEADERS += \
     BuildSmallTower.h \
-    BuildTank.h \
     Enemy.h \
     ExitBtn.h \
     Player.h \
-    Tank.h \
-    TankRocket.h \
     TowerSmall.h \
     TowerSmallBullet.h \
     Bomb.h \
@@ -58,13 +55,16 @@ HEADERS += \
     CannonBullet.h \
     Robot.h \
     WomanEnemy.h \
-    BuildHole.h \
+    Lifes.h \
+    Remover.h \
     BuildRemover.h \
     BuildWeapon.h \
-    Hole.h \
     Weapon.h \
     WeaponBullets.h \
-    Remover.h
+    Hole.h \
+    BuildHole.h \
+    PlayAgain.h \
+    Zombie.h
 
 FORMS += \
     mainwindow.ui

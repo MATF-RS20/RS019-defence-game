@@ -12,7 +12,7 @@ class Hole:public QObject, public QGraphicsPixmapItem{
 public:
     Hole(int x,int y);
 public slots:
-
+    void wait();
 };
 
 #endif // HOLE_H

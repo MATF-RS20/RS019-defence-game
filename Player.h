@@ -7,9 +7,11 @@ using namespace std;
 class Player:public QObject, public QGraphicsRectItem{
     Q_OBJECT
 public:
-    static int coins;
+    static int lifes;
+    static bool new_game;
 public slots:
     void spawn();
+    void check();
 };
 
 #endif // PLAYER_H
