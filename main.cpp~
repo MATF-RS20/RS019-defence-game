@@ -55,12 +55,6 @@ int main(int argc, char *argv[])
     view->setMouseTracking(true);
 
     scene->setSceneRect(0,0,1366,700);
-    // Pozadina
-    QPixmap bk(":/imgs/plants-vs-zombies-background-7.jpg");
-    QGraphicsPixmapItem * backround = new QGraphicsPixmapItem();
-    backround->setPixmap(bk.scaled(QSize(2000,1000)));
-    backround->setPos(-300,-200);
-    scene->addItem(backround);
 
     // Dugme za exit
     ExitBtn * exit = new ExitBtn();
