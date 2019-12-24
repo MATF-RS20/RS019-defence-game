@@ -1,4 +1,4 @@
-#include "WomanEnemy.h"
+#include "Zombie.h"
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QList>
@@ -18,7 +18,7 @@
 #include "Hole.h"
 #include "Weapon.h"
 //std::vector<class Enemy*> Enemy::cord_list;
-WomanEnemy::WomanEnemy():QObject(),  QGraphicsPixmapItem()
+Zombie::Zombie():QObject(),  QGraphicsPixmapItem()
 {
 
     int random_n = rand() % 500; // sa %500 ogranicavamo da se protivnik ne pravi na Y>500
@@ -31,12 +31,9 @@ WomanEnemy::WomanEnemy():QObject(),  QGraphicsPixmapItem()
     QTimer * timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
     timer->start(200);
-
-
 }
 
-
-void WomanEnemy::move(){
+void Zombie::move(){
     //HIT DETECTION preuzet sa Stackoverflow-a
 
     QList<QGraphicsItem *> colliding_items = collidingItems();
@@ -61,7 +58,7 @@ void WomanEnemy::move(){
             }
 
             if (typeid(*(colliding_items[i])) == typeid(Hole)){
-                k=4;
+                k=2;
             }
 
         }
@@ -69,40 +66,22 @@ void WomanEnemy::move(){
     if(pos().x() > 800 && !(this->escaped)){
         Player::lifes-=1;
         this->escaped = true;
-       // scene()->removeItem(this);
-       // delete this;
     }
     //Sa svakim otkucajem tajmere protivnik se pomera i menja se slika hoda
     if (this->n == 1){
-        QPixmap img(":/imgs/character_femaleAdventurer_walk1.png");
+        QPixmap img(":/imgs/zombie_1.png");
         setPixmap(img.scaled(QSize(80,80)));
         this->n=2;
     }else if(this->n==2){
-        QPixmap img(":/imgs/character_femaleAdventurer_walk2.png");
+        QPixmap img(":/imgs/zombie_2.png");
         setPixmap(img.scaled(QSize(80,80)));
         this->n=3;
     }else if(this->n==3){
-        QPixmap img(":/imgs/character_femaleAdventurer_walk3.png");
+        QPixmap img(":/imgs/zombie_3.png");
         setPixmap(img.scaled(QSize(80,80)));
         this->n=4;
-    }else if (this->n == 4){
-        QPixmap img(":/imgs/character_femaleAdventurer_walk4.png");
-        setPixmap(img.scaled(QSize(80,80)));
-        this->n=5;
-    }else if(this->n==5){
-        QPixmap img(":/imgs/character_femaleAdventurer_walk5.png");
-        setPixmap(img.scaled(QSize(80,80)));
-        this->n=6;
-    }else if(this->n==6){
-        QPixmap img(":/imgs/character_femaleAdventurer_walk6.png");
-        setPixmap(img.scaled(QSize(80,80)));
-        this->n=7;
-    }else if(this->n==7){
-        QPixmap img(":/imgs/character_femaleAdventurer_walk7.png");
-        setPixmap(img.scaled(QSize(80,80)));
-        this->n=8;
-    }else if(this->n==8){
-        QPixmap img(":/imgs/character_femaleAdventurer_walk0.png");
+    }else {
+        QPixmap img(":/imgs/zombie_4.png");
         setPixmap(img.scaled(QSize(80,80)));
         this->n=1;
     }

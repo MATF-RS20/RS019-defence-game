@@ -1,5 +1,5 @@
-#ifndef HOLE_H
-#define HOLE_H
+#ifndef LIFES_H
+#define LIFES_H
 
 #include <QGraphicsPixmapItem>
 #include <QGraphicsPolygonItem>
@@ -7,12 +7,14 @@
 #include <QPointF>
 #include <QObject>
 
-class Hole:public QObject, public QGraphicsPixmapItem{
+class Lifes:public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    Hole(int x,int y);
+    Lifes();
+    int lifes = 3;
 public slots:
     void wait();
+
 };
 
-#endif // HOLE_H
+#endif // LIFES_H

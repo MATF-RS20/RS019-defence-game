@@ -6,6 +6,8 @@
 #include "Enemy.h"
 #include "Robot.h"
 #include "WomanEnemy.h"
+#include "Zombie.h"
+
 CannonBullet1::CannonBullet1(int x,int y):QObject(),QGraphicsPixmapItem(){
     QPixmap img(":/imgs/m1.png");
     setPixmap(img.scaled(QSize(40,10)));
@@ -31,7 +33,10 @@ void CannonBullet1::move_bullet1(){
     // COALISION DETECTION : preuzeto sa STACKOVERFLOW
     QList<QGraphicsItem *> colliding_items = collidingItems();
         for (int i = 0, n = colliding_items.size(); i < n; ++i){
-            if (typeid(*(colliding_items[i])) == typeid(Enemy) || typeid(*(colliding_items[i])) == typeid(Robot) || typeid(*(colliding_items[i])) == typeid(WomanEnemy)){
+            if (typeid(*(colliding_items[i])) == typeid(Enemy)
+                    || typeid(*(colliding_items[i])) == typeid(Robot)
+                    || typeid(*(colliding_items[i])) == typeid(Zombie)
+                    || typeid(*(colliding_items[i])) == typeid(WomanEnemy)){
                 scene()->removeItem(this);
                 delete this;
                 return;
@@ -48,7 +53,10 @@ void CannonBullet2::move_bullet2(){
     // COALISION DETECTION : preuzeto sa STACKOVERFLOW
     QList<QGraphicsItem *> colliding_items = collidingItems();
         for (int i = 0, n = colliding_items.size(); i < n; ++i){
-            if (typeid(*(colliding_items[i])) == typeid(Enemy) || typeid(*(colliding_items[i])) == typeid(WomanEnemy) || typeid(*(colliding_items[i])) == typeid(Robot)){
+            if (typeid(*(colliding_items[i])) == typeid(Enemy)
+                    || typeid(*(colliding_items[i])) == typeid(Zombie)
+                    || typeid(*(colliding_items[i])) == typeid(WomanEnemy)
+                    || typeid(*(colliding_items[i])) == typeid(Robot)){
                 scene()->removeItem(this);
                 delete this;
                 return;

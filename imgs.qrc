@@ -33,20 +33,24 @@
         <file>explosion5.png</file>
         <file>m1.png</file>
         <file>m2.png</file>
-        <file>fire18.png</file>
-        <file>gone.png</file>
-        <file>hole.png</file>
-        <file>laser.png</file>
-        <file>laser1.png</file>
-        <file>laser2.png</file>
+        <file>1hearts.png</file>
         <file>laser5.png</file>
-        <file>platformPack_tile012.png</file>
-        <file>port.png</file>
-        <file>port2.png</file>
-        <file>portal.png</file>
-        <file>portal_orange.png</file>
         <file>remover.png</file>
-        <file>weapon.png</file>
         <file>weapon2.png</file>
+        <file>weapon.png</file>
+        <file>0hearts.png</file>
+        <file>2hearts.png</file>
+        <file>3hearts.png</file>
+        <file>portal_orange.png</file>
+        <file>port2.png</file>
+        <file>game_over.png</file>
+        <file>zombie_3.png</file>
+        <file>zombie_4.png</file>
+        <file>zombie_2.png</file>
+        <file>zombie_1.png</file>
+        <file>play_again.png</file>
+        <file>black.png</file>
+        <file>black2.png</file>
+        <file>black3.png</file>
     </qresource>
 </RCC>

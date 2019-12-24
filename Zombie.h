@@ -1,22 +1,22 @@
-#ifndef ROBOT_H
-#define ROBOT_H
+#ifndef ZOMBIE_H
+#define ZOMBIE_H
 
 #include <QGraphicsRectItem>
 #include <QObject>
 #include <vector>
 #include <stdbool.h>
 
-class Robot: public QObject,public  QGraphicsPixmapItem{
+class Zombie: public QObject,public  QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    Robot();
+    Zombie();
     int n = 1;
     int HP = 1;
-    int k = 8;
+    int k = 6;
     bool escaped = false;
    // static std::vector<class Enemy*>cord_list; // Lista (y) kordinata protivnika
 public slots:
     void move();
 };
 
-#endif // ROBOT_H
+#endif // ZOMBIE_H

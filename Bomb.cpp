@@ -10,6 +10,8 @@
 #include "Enemy.h"
 #include "Robot.h"
 #include "WomanEnemy.h"
+#include "Zombie.h"
+#include "Remover.h"
 Bomb::Bomb(int x,int y):QObject(), QGraphicsPixmapItem()
 {
     // Pravimo bombu na datoj lokaciji
@@ -24,13 +26,21 @@ void Bomb::wait()
 {
     QList<QGraphicsItem *> colliding_items = collidingItems();
         for (int i = 0, n = colliding_items.size(); i < n; ++i){
-            if (typeid(*(colliding_items[i])) == typeid(WomanEnemy) || typeid(*(colliding_items[i])) == typeid(Enemy) || typeid(*(colliding_items[i])) == typeid(Robot)){
+            if (typeid(*(colliding_items[i])) == typeid(WomanEnemy)
+                    || typeid(*(colliding_items[i])) == typeid(Enemy)
+                    || typeid(*(colliding_items[i])) == typeid(Zombie)
+                    || typeid(*(colliding_items[i])) == typeid(Robot)){
                 QTimer * timer = new QTimer(this);
                 connect(timer,SIGNAL(timeout()),this,SLOT(explosion()));
                 timer->start(200);
-
+            }
+            if (typeid(*(colliding_items[i])) == typeid(Remover) ){
+                scene()->removeItem(this);
+                delete this;
+                return;
             }
         }
+
     setPos(x(),y());
     if(pos().x() <= 0 ){
         scene()->removeItem(this);
@@ -41,7 +51,7 @@ void Bomb::wait()
 void Bomb::explosion(){
     setPos(x(),y());
 
-    //Eksplozija
+    //Sa svakim otkucajem tajmere protivnik se pomera i menja se slika hoda
     if (this->n == 1){
         QPixmap img(":/imgs/explosion1.png");
         setPixmap(img.scaled(QSize(80,80)));
@@ -70,4 +80,3 @@ void Bomb::explosion(){
 
 
 }
-
