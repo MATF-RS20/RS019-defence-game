@@ -25,6 +25,8 @@
 #include "BuildRemover.h"
 #include <iostream>
 #include "PlayAgain.h"
+#include "Tank.h"
+#include "BuildTank.h"
 
 QGraphicsPixmapItem* UIButton(int x,int y){
     QPixmap img(":/imgs/blue_button06.png");
@@ -119,6 +121,9 @@ int main(int argc, char *argv[])
     if(player->new_game){
         player->lifes=3;
     }
+
+    BuildTank * tank = new BuildTank();
+    scene->addItem(tank);
 
     //Protivnici se stvaraju na nekom intervalu
     QTimer * timer = new QTimer();
