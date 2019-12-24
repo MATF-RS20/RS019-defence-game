@@ -16,14 +16,14 @@ BuildHole::BuildHole():QObject(), QGraphicsPixmapItem()
    setPos(475, 620);
 }
 void BuildHole::mousePressEvent(QGraphicsSceneMouseEvent *event){
-    // Kada kliknemo na ikonicu za izgradnju kule i drzimo kursor on postaje kula
+    // Kada kliknemo na ikonicu za izgradnju rupe i drzimo kursor on postaje rupa
 
      QPixmap img(":/imgs/portal_orange.png");
      setCursor(img.scaled(QSize(75,65)));
 
 }
 void BuildHole::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
-    //Kada pustimo kursor na nekoj lokaciji na njoj se pravi kula
+    //Kada pustimo kursor na nekoj lokaciji na njoj se pravi rupa
 
     Hole * m = new Hole(QCursor::pos().x()-100,QCursor::pos().y()-100);
     scene()->addItem(m);

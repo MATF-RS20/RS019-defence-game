@@ -9,11 +9,10 @@
 #include "Weapon.h"
 #include "Enemy.h"
 #include "Robot.h"
-#include "Remover.h"
 
 Weapon::Weapon(int x,int y):QObject(), QGraphicsPixmapItem()
 {
-   // Pravimo oruzje na datoj lokaciji
+    // Pravimo malo oruzje na datoj lokaciji
    QPixmap img(":/imgs/weapon2.png");
    setPixmap(img.scaled(QSize(43,43)));
    setPos(x,y);
@@ -38,14 +37,6 @@ void Weapon::fire()
     scene()->addItem(tb2);
     scene()->addItem(tb3);
 
-    QList<QGraphicsItem *> colliding_items = collidingItems();
-        for (int i = 0, n = colliding_items.size(); i < n; ++i){
-            if (typeid(*(colliding_items[i])) == typeid(Remover) ){
-                scene()->removeItem(this);
-                delete this;
-                return;
-            }
-        }
 }
 
 

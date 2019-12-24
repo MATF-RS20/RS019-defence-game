@@ -1,6 +1,8 @@
 #include "ExitBtn.h"
 #include <QApplication>
 
+
+
 ExitBtn::ExitBtn(): QGraphicsPixmapItem(){
     //Dugme za exit
 

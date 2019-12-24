@@ -16,7 +16,7 @@ class Remover:public QObject, public QGraphicsPixmapItem{
 public:
     Remover(int x,int y);
 public slots:
-    void move();
+
 };
 
 #endif // REMOVER_H

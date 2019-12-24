@@ -5,15 +5,16 @@
 #include <QGraphicsRectItem>
 #include <QObject>
 #include <vector>
-#include <stdbool.h>
+#include "Player.h"
+
 class Enemy: public QObject,public  QGraphicsPixmapItem{
     Q_OBJECT
 public:
     Enemy();
     int n=1;
     int HP = 2;
-    int k = 3;
-    bool escaped = false;
+    //odredjuje brzinu kretanja vojnika
+    int k=3;
    // static std::vector<class Enemy*>cord_list; // Lista (y) kordinata protivnika
 public slots:
     void move();

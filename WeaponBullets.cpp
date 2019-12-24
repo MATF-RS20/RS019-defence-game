@@ -6,7 +6,6 @@
 #include "Enemy.h"
 #include "Robot.h"
 #include "WomanEnemy.h"
-#include "Zombie.h"
 
 WeaponBullet1::WeaponBullet1(int x,int y):QObject(),QGraphicsPixmapItem(){
     QPixmap img(":/imgs/laser5.png");
@@ -45,7 +44,6 @@ void WeaponBullet1::move_bullet1(){
         for (int i = 0, n = colliding_items.size(); i < n; ++i){
             if (typeid(*(colliding_items[i])) == typeid(Enemy)
                     || typeid(*(colliding_items[i])) == typeid(Robot)
-                    || typeid(*(colliding_items[i])) == typeid(Zombie)
                     || typeid(*(colliding_items[i])) == typeid(WomanEnemy)){
                 scene()->removeItem(this);
                 delete this;
@@ -66,7 +64,6 @@ void WeaponBullet2::move_bullet2(){
         for (int i = 0, n = colliding_items.size(); i < n; ++i){
             if (typeid(*(colliding_items[i])) == typeid(Enemy)
                     || typeid(*(colliding_items[i])) == typeid(Robot)
-                    || typeid(*(colliding_items[i])) == typeid(Zombie)
                     || typeid(*(colliding_items[i])) == typeid(WomanEnemy)){
                 scene()->removeItem(this);
                 delete this;
@@ -89,7 +86,6 @@ void WeaponBullet3::move_bullet3(){
         for (int i = 0, n = colliding_items.size(); i < n; ++i){
             if (typeid(*(colliding_items[i])) == typeid(Enemy)
                     || typeid(*(colliding_items[i])) == typeid(Robot)
-                    || typeid(*(colliding_items[i])) == typeid(Zombie)
                     || typeid(*(colliding_items[i])) == typeid(WomanEnemy)){
                 scene()->removeItem(this);
                 delete this;
