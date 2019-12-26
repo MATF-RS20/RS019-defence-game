@@ -16,8 +16,10 @@
 #include "WeaponBullets.h"
 #include "Player.h"
 #include "Hole.h"
+#include"Score.h"
+#include "Game.h"
 //std::vector<class Enemy*> Enemy::cord_list;
-
+extern Game * game;
 int Player::lifes = 3;
 Enemy::Enemy():QObject(),  QGraphicsPixmapItem()
 {
@@ -49,14 +51,19 @@ void Enemy::move(){
                     || typeid(*(colliding_items[i])) == typeid(WeaponBullet3)){
                 this->HP -=1;
                 if(this->HP==0){
+                    game->score->score+=cost;
+                    game->score->prints();
                     scene()->removeItem(this);
                     delete this;
                     return;
                 }
             }
             if (typeid(*(colliding_items[i])) == typeid(Bomb) ){
+                game->score->score+=cost;
+                game->score->prints();
                 scene()->removeItem(this);
                 delete this;
+
                 return;
             }
 

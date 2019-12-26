@@ -13,6 +13,7 @@ public:
     int n=1;
     int HP = 2;
     int k = 3;
+    int cost=1;
     bool escaped = false;
    // static std::vector<class Enemy*>cord_list; // Lista (y) kordinata protivnika
 public slots:

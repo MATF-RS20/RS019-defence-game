@@ -11,8 +11,11 @@ class BuildBomb:public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     BuildBomb();
+    int cost=5;
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-
+public slots:
+    //funkcija koja proverava da li ima novca za to oruzje i ako nema zamagljuje objekat
+    void wait();
 };
 #endif // BUILDBOMB_H

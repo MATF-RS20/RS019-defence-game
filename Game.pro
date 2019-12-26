@@ -26,20 +26,26 @@ SOURCES += \
     Bomb.cpp \
     BuildBomb.cpp \
     BuildCannon.cpp \
-    Cannon.cpp \
-    CannonBullet.cpp \
-    Robot.cpp \
-    WomanEnemy.cpp \
-    Lifes.cpp \
-    Remover.cpp \
+    BuildHole.cpp \
     BuildRemover.cpp \
     BuildWeapon.cpp \
+    Cannon.cpp \
+    CannonBullet.cpp \
+    Coins.cpp \
+    Game.cpp \
+    Hole.cpp \
+    Lifes.cpp \
+    PlayAgain.cpp \
+    Remover.cpp \
+    Robot.cpp \
+    Score.cpp \
     Weapon.cpp \
     WeaponBullets.cpp \
-    Hole.cpp \
-    BuildHole.cpp \
-    PlayAgain.cpp \
-    Zombie.cpp
+    WomanEnemy.cpp \
+    Zombie.cpp \
+    TankRocket.cpp \
+    Tank.cpp \
+    BuildTank.cpp
 
 HEADERS += \
     BuildSmallTower.h \
@@ -51,20 +57,26 @@ HEADERS += \
     Bomb.h \
     BuildBomb.h \
     BuildCannon.h \
-    Cannon.h \
-    CannonBullet.h \
-    Robot.h \
-    WomanEnemy.h \
-    Lifes.h \
-    Remover.h \
+    BuildHole.h \
     BuildRemover.h \
     BuildWeapon.h \
+    Cannon.h \
+    CannonBullet.h \
+    Coins.h \
+    Game.h \
+    Hole.h \
+    Lifes.h \
+    PlayAgain.h \
+    Remover.h \
+    Robot.h \
+    Score.h \
     Weapon.h \
     WeaponBullets.h \
-    Hole.h \
-    BuildHole.h \
-    PlayAgain.h \
-    Zombie.h
+    WomanEnemy.h \
+    Zombie.h \
+    TankRocket.h \
+    Tank.h \
+    BuildTank.h
 
 FORMS += \
     mainwindow.ui

@@ -18,8 +18,8 @@
 #include "WeaponBullets.h"
 #include "Bomb.h"
 #include "Hole.h"
-
-
+#include"Game.h"
+extern Game* game;
 Robot::Robot():QObject(),  QGraphicsPixmapItem()
 {
 
@@ -51,12 +51,16 @@ void Robot::move(){
                     || typeid(*(colliding_items[i])) == typeid(WeaponBullet3)){
                 this->HP -=1;
                 if(this->HP==0){
+                    game->score->score+=cost;
+                    game->score->prints();
                     scene()->removeItem(this);
                     delete this;
                     return;
                 }
             }
             if (typeid(*(colliding_items[i])) == typeid(Bomb)){
+                game->score->score+=cost;
+                game->score->prints();
                 scene()->removeItem(this);
                 delete this;
                 return;

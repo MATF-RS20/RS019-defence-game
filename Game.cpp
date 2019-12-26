@@ -1,0 +1,187 @@
+#include <QApplication>
+#include <QGraphicsScene>
+#include <QGraphicsRectItem>
+#include <QGraphicsView>
+#include <QGraphicsPixmapItem>
+#include <QGraphicsObject>
+#include <QTimer>
+#include <QApplication>
+#include <QObject>
+#include "Player.h"
+#include "TowerSmall.h"
+#include "Cannon.h"
+#include "Bomb.h"
+#include "ExitBtn.h"
+#include <QPixmap>
+#include "BuildSmallTower.h"
+#include "BuildCannon.h"
+#include "BuildBomb.h"
+#include "Weapon.h"
+#include "BuildWeapon.h"
+#include "Hole.h"
+#include "BuildHole.h"
+#include "Remover.h"
+#include "Lifes.h"
+#include "BuildRemover.h"
+#include <iostream>
+#include "PlayAgain.h"
+#include"Score.h"
+#include"Game.h"
+#include"Coins.h"
+#include"BuildTank.h"
+QGraphicsPixmapItem* UIButton(int x,int y){
+    QPixmap img(":/imgs/blue_button06.png");
+        QGraphicsPixmapItem * box = new QGraphicsPixmapItem();
+        box->setPixmap(img.scaled(QSize(100,100)));
+        box->setPos(x,y);
+        return box;
+
+}
+Game::Game(QWidget *parent){
+    //Pravimo scenu za crtanje objekata
+    QGraphicsScene * scene = new QGraphicsScene();
+
+    //Pravimo igraca
+    Player * player = new Player();
+    scene->addItem(player);
+
+    //Prikazujemo scenu
+    QGraphicsView * view = new QGraphicsView(scene);
+    view->show();
+    view->setFixedSize(1300,700);
+    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->showFullScreen();
+    view->setMouseTracking(true);
+
+    scene->setSceneRect(0,0,1300,700);
+
+    // Pozadina
+        QPixmap bk(":/imgs/plants-vs-zombies-background-7.jpg");
+        QGraphicsPixmapItem * backround = new QGraphicsPixmapItem();
+        backround->setPixmap(bk.scaled(QSize(2000,1000)));
+        backround->setPos(-300,-200);
+        scene->addItem(backround);
+    // Dugme za exit
+    ExitBtn * exit = new ExitBtn();
+    scene->addItem(exit);
+    //Panel za odabir kula (ukras, zato ne pravimo zasebnu klasu)
+    QPixmap panel(":/imgs/blue_panel.png");
+    QGraphicsPixmapItem * box_panel = new QGraphicsPixmapItem();
+    box_panel->setPixmap(panel.scaled(QSize(1500,200)));
+    box_panel->setPos(-80,600);
+    scene->addItem(box_panel);
+
+    //Tablice sa cenama oruzja
+    QPixmap table_pic1(":/imgs/sign3.png");
+    QGraphicsPixmapItem * table1 = new QGraphicsPixmapItem();
+    table1->setPixmap(table_pic1.scaled(QSize(60,60)));
+    table1->setPos(30,545);
+    scene->addItem(table1);
+    QGraphicsPixmapItem * table2 = new QGraphicsPixmapItem();
+    table2->setPixmap(table_pic1.scaled(QSize(60,60)));
+    table2->setPos(180,545);
+    scene->addItem(table2);
+    QPixmap table_pic2(":/imgs/sign6.png");
+    QGraphicsPixmapItem * table3 = new QGraphicsPixmapItem();
+    table3->setPixmap(table_pic2.scaled(QSize(60,60)));
+    table3->setPos(330,545);
+    scene->addItem(table3);
+    QPixmap table_pic3(":/imgs/sign2.png");
+    QGraphicsPixmapItem * table4 = new QGraphicsPixmapItem();
+    table4->setPixmap(table_pic3.scaled(QSize(60,60)));
+    table4->setPos(480,545);
+    scene->addItem(table4);
+    QPixmap table_pic4(":/imgs/sign4.png");
+    QGraphicsPixmapItem * table5 = new QGraphicsPixmapItem();
+    table5->setPixmap(table_pic4.scaled(QSize(60,60)));
+    table5->setPos(630,545);
+    scene->addItem(table5);
+    QPixmap table_pic5(":/imgs/sign5.png");
+    QGraphicsPixmapItem * table6 = new QGraphicsPixmapItem();
+    table6->setPixmap(table_pic5.scaled(QSize(60,60)));
+    table6->setPos(780,545);
+    scene->addItem(table6);
+
+
+    //Tabla na kojoj ce se prikazivati rezultati
+    QPixmap table_pic(":/imgs/table.png");
+    QGraphicsPixmapItem * table = new QGraphicsPixmapItem();
+    table->setPixmap(table_pic.scaled(QSize(150,65)));
+    table->setPos(0,5);
+    scene->addItem(table);
+    // Okviri za kule (ukras, zato ne pravimo zasebnu klasu vec samo fju za iscrtavanje)
+    // shift za 150px
+    QGraphicsPixmapItem * box ;
+    box= UIButton(10,605);
+    scene->addItem(box);
+    box = UIButton(160,605);
+    scene->addItem(box);
+    box= UIButton(310,605);
+    scene->addItem(box);
+    box= UIButton(460,605);
+    scene->addItem(box);
+    box= UIButton(610,605);
+    scene->addItem(box);
+    box= UIButton(760,605);
+    scene->addItem(box);
+
+    // Dugme za pravljenje malih kula
+    BuildSmallTower * st = new BuildSmallTower();
+    scene->addItem(st);
+
+    // Dugme za pravljenje topova
+    BuildCannon * cannon = new BuildCannon();
+    scene->addItem(cannon);
+
+    // Dugme za pravljenje bombe
+    BuildBomb * bomb = new BuildBomb();
+    scene->addItem(bomb);
+
+
+    // Dugme za pravljenje rupa
+    BuildHole * hole = new BuildHole();
+    scene->addItem(hole);
+
+    // Dugme za pravljenje oruzja
+    BuildWeapon * weapon = new BuildWeapon();
+    scene->addItem(weapon);
+
+    // Dugme za pravljenje brisaca
+    BuildRemover * remover = new BuildRemover();
+    scene->addItem(remover);
+
+    // Dugme za pravljenje tenka
+    BuildTank * tank=new BuildTank();
+    scene->addItem(tank);
+
+    // Dodavanje zivota
+    Lifes * lifes = new Lifes();
+    scene->addItem(lifes);
+
+    // Dodavanje poena
+    score=new Score();
+    scene->addItem(score);
+
+    // Dodaje se novcic koji se okrece
+    Coins* coins=new Coins();
+    scene->addItem(coins);
+    if(player->new_game){
+        player->lifes=3;
+    }
+
+    //Protivnici se stvaraju na nekom intervalu
+    QTimer * timer = new QTimer();
+    QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn()));
+    timer->start(5000);
+
+
+}
+
+
+
+
+
+
+
+

@@ -13,6 +13,9 @@ public:
     BuildTank();
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    int cost=3;
+public slots:
+    void wait();
 
 };
 #endif // BUILDTANK_H

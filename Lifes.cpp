@@ -26,18 +26,18 @@ void Lifes::wait()
     if(Player::lifes==3){
         QPixmap img(":/imgs/3hearts.png");
         setPixmap(img.scaled(QSize(150,50)));
-        setPos(110, 10);
+        setPos(150, 10);
     }else if(Player::lifes==2){
         QPixmap img(":/imgs/2hearts.png");
         setPixmap(img.scaled(QSize(150,50)));
-        setPos(110, 10);
+        setPos(150, 10);
     }else if(Player::lifes==1){
         QPixmap img(":/imgs/1hearts.png");
         setPixmap(img.scaled(QSize(150,50)));
-        setPos(110, 10);
+        setPos(150, 10);
     }else{
         QPixmap img(":/imgs/0hearts.png");
         setPixmap(img.scaled(QSize(150,50)));
-        setPos(110, 10);
+        setPos(150, 10);
     }
 }

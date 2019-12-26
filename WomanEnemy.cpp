@@ -17,6 +17,8 @@
 #include "Player.h"
 #include "Hole.h"
 #include "Weapon.h"
+#include"Game.h"
+extern Game* game;
 //std::vector<class Enemy*> Enemy::cord_list;
 WomanEnemy::WomanEnemy():QObject(),  QGraphicsPixmapItem()
 {
@@ -49,12 +51,16 @@ void WomanEnemy::move(){
                 || typeid(*(colliding_items[i])) == typeid(WeaponBullet3)){
             this->HP -=1;
             if(this->HP==0){
+                game->score->score+=cost;
+                game->score->prints();
                 scene()->removeItem(this);
                 delete this;
                 return;
             }
         }
             if (typeid(*(colliding_items[i])) == typeid(Bomb)){
+                game->score->score+=cost;
+                game->score->prints();
                 scene()->removeItem(this);
                 delete this;
                 return;
