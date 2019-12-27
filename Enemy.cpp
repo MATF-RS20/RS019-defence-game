@@ -16,7 +16,8 @@
 #include "WeaponBullets.h"
 #include "Player.h"
 #include "Hole.h"
-#include"Score.h"
+#include "Score.h"
+#include "TankRocket.h"
 #include "Game.h"
 //std::vector<class Enemy*> Enemy::cord_list;
 extern Game * game;
@@ -58,12 +59,12 @@ void Enemy::move(){
                     return;
                 }
             }
-            if (typeid(*(colliding_items[i])) == typeid(Bomb) ){
+            if (typeid(*(colliding_items[i])) == typeid(Bomb)
+                    || typeid(*(colliding_items[i])) == typeid(TankRocket)){
                 game->score->score+=cost;
                 game->score->prints();
                 scene()->removeItem(this);
                 delete this;
-
                 return;
             }
 
@@ -77,6 +78,9 @@ void Enemy::move(){
     if(pos().x() > 800 && !(this->escaped)){
         Player::lifes-=1;
         this->escaped = true;
+        if(Player::lifes<=0){
+            game->game_over();
+        }
     }
     //Sa svakim otkucajem tajmere protivnik se pomera i menja se slika hoda
     if (this->n == 1){

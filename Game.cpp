@@ -27,8 +27,14 @@
 #include "PlayAgain.h"
 #include"Score.h"
 #include"Game.h"
+#include"Zombie.h"
 #include"Coins.h"
-#include"BuildTank.h"
+#include "Tank.h"
+#include "TowerSmallBullet.h"
+#include "WeaponBullets.h"
+#include "TankRocket.h"
+#include "CannonBullet.h"
+#include "BuildTank.h"
 QGraphicsPixmapItem* UIButton(int x,int y){
     QPixmap img(":/imgs/blue_button06.png");
         QGraphicsPixmapItem * box = new QGraphicsPixmapItem();
@@ -39,7 +45,7 @@ QGraphicsPixmapItem* UIButton(int x,int y){
 }
 Game::Game(QWidget *parent){
     //Pravimo scenu za crtanje objekata
-    QGraphicsScene * scene = new QGraphicsScene();
+    scene = new QGraphicsScene();
 
     //Pravimo igraca
     Player * player = new Player();
@@ -156,7 +162,7 @@ Game::Game(QWidget *parent){
     scene->addItem(tank);
 
     // Dodavanje zivota
-    Lifes * lifes = new Lifes();
+    lifes = new Lifes();
     scene->addItem(lifes);
 
     // Dodavanje poena
@@ -166,22 +172,77 @@ Game::Game(QWidget *parent){
     // Dodaje se novcic koji se okrece
     Coins* coins=new Coins();
     scene->addItem(coins);
-    if(player->new_game){
-        player->lifes=3;
-    }
 
     //Protivnici se stvaraju na nekom intervalu
-    QTimer * timer = new QTimer();
+    timer = new QTimer();
     QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn()));
     timer->start(5000);
 
+}
+
+void Game::reset()
+{
+   //Vracamo pocetne vrednosti i izgled ekrana i startujemo tajmer za pravljenje novih protivnika
+   this->score->score=10;
+   this->score->prints();
+   this->player->lifes=3;
+   this->timer->start();
+   this->scene->removeItem(background);
+   delete background;
+   this->scene->removeItem(game_end);
+   delete game_end;
+   this->scene->removeItem(pa);
+   delete pa;
+   this->timer->start();
 
 }
 
 
+void Game::game_over(){
 
+    //Kraj igre-zaustavljamo pravljenje novih protivnika
+    //ispisujemo poruku o kraju i brisemo sve napravljene neprijatelje i oruzja
+    this->timer->stop();
 
+    QPixmap black(":/imgs/black.png");
+    background = new QGraphicsPixmapItem();
+    background->setPixmap(black.scaled(QSize(1366,350)));
+    background->setPos(0,150);
+    this->scene->addItem(background);
 
+    QPixmap end(":/imgs/game_over.png");
+    game_end = new QGraphicsPixmapItem();
+    game_end->setPixmap(end.scaled(QSize(600,100)));
+    game_end->setPos(350,200);
+    this->scene->addItem(game_end);
 
+    pa = new PlayAgain();
+    this->scene->addItem(pa);
 
+    for (auto item : this->scene->items())
+        {
+            if (typeid (*item) == typeid (Enemy)
+               || typeid (*item) == typeid (Zombie)
+               || typeid (*item) == typeid (Robot)
+               || typeid (*item) == typeid (WomanEnemy)
+               || typeid (*item) == typeid (Weapon)
+               || typeid (*item) == typeid (Tank)
+               || typeid (*item) == typeid (Hole)
+               || typeid (*item) == typeid (Bomb)
+               || typeid (*item) == typeid (TowerSmall)
+               || typeid (*item) == typeid (TankRocket)
+               || typeid (*item) == typeid (Cannon)
+               || typeid (*item) == typeid (WeaponBullet1)
+               || typeid (*item) == typeid (WeaponBullet2)
+               || typeid (*item) == typeid (WeaponBullet3)
+               || typeid (*item) == typeid (CannonBullet1)
+               || typeid (*item) == typeid (CannonBullet2)
+               || typeid (*item) == typeid (TowerSmallBullet))
+            {
+                this->scene->removeItem(item);
+                delete item;
+            }
+        }
+
+}
 

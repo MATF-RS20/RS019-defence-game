@@ -6,7 +6,6 @@
 
 class PlayAgain: public QGraphicsPixmapItem{
 public:
-    static bool pressed;
     PlayAgain();
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
 };

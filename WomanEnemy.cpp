@@ -14,6 +14,7 @@
 #include "Weapon.h"
 #include "WeaponBullets.h"
 #include "Bomb.h"
+#include "TankRocket.h"
 #include "Player.h"
 #include "Hole.h"
 #include "Weapon.h"
@@ -58,7 +59,8 @@ void WomanEnemy::move(){
                 return;
             }
         }
-            if (typeid(*(colliding_items[i])) == typeid(Bomb)){
+            if (typeid(*(colliding_items[i])) == typeid(Bomb)
+                    || typeid(*(colliding_items[i])) == typeid(TankRocket)){
                 game->score->score+=cost;
                 game->score->prints();
                 scene()->removeItem(this);
@@ -75,8 +77,9 @@ void WomanEnemy::move(){
     if(pos().x() > 800 && !(this->escaped)){
         Player::lifes-=1;
         this->escaped = true;
-       // scene()->removeItem(this);
-       // delete this;
+        if(Player::lifes<=0){
+            game->game_over();
+        }
     }
     //Sa svakim otkucajem tajmere protivnik se pomera i menja se slika hoda
     if (this->n == 1){

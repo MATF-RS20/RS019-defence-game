@@ -3,7 +3,8 @@
 #include <QGraphicsObject>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
-
+#include "Game.h"
+extern Game* game;
 PlayAgain::PlayAgain(): QGraphicsPixmapItem(){
     //Dugme za ponovno pokretanje igrice
 
@@ -11,7 +12,7 @@ PlayAgain::PlayAgain(): QGraphicsPixmapItem(){
     setPixmap(img.scaled(QSize(230,80)));
     setPos(540, 330);
 }
-bool PlayAgain::pressed=false;
+
 void PlayAgain::mousePressEvent(QGraphicsSceneMouseEvent *event){
-   // pressed=true;
+     game->reset();
 }

@@ -50,7 +50,7 @@ void BuildTank::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     if(game->score->score>=cost){
         game->score->score-=cost;
         game->score->prints();
-        Tank * t = new Tank(QCursor::pos().x()-100,QCursor::pos().y()-130);
+        Tank * t = new Tank(QCursor::pos().x()-135,QCursor::pos().y()-150);
         scene()->addItem(t);
         setCursor(Qt::ArrowCursor);
     }

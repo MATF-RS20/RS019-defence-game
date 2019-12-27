@@ -14,6 +14,7 @@
 #include "Weapon.h"
 #include "WeaponBullets.h"
 #include "Bomb.h"
+#include "TankRocket.h"
 #include "Player.h"
 #include "Hole.h"
 #include "Weapon.h"
@@ -45,7 +46,8 @@ void Zombie::move(){
                 || typeid(*(colliding_items[i])) == typeid(CannonBullet2)
                 || typeid(*(colliding_items[i])) == typeid(WeaponBullet1)
                 || typeid(*(colliding_items[i])) == typeid(WeaponBullet2)
-                || typeid(*(colliding_items[i])) == typeid(WeaponBullet3)){
+                || typeid(*(colliding_items[i])) == typeid(WeaponBullet3)
+                ){
             this->HP -=1;
             if(this->HP==0){
                 game->score->score+=cost;
@@ -55,7 +57,8 @@ void Zombie::move(){
                 return;
             }
         }
-            if (typeid(*(colliding_items[i])) == typeid(Bomb)){
+            if (typeid(*(colliding_items[i])) == typeid(Bomb)
+                    || typeid(*(colliding_items[i])) == typeid(TankRocket)){
                 game->score->score+=cost;
                 game->score->prints();
                 scene()->removeItem(this);
@@ -72,6 +75,9 @@ void Zombie::move(){
     if(pos().x() > 800 && !(this->escaped)){
         Player::lifes-=1;
         this->escaped = true;
+        if(Player::lifes<=0){
+            game->game_over();
+        }
     }
     //Sa svakim otkucajem tajmere protivnik se pomera i menja se slika hoda
     if (this->n == 1){

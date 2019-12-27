@@ -49,7 +49,7 @@ void BuildSmallTower::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     if(game->score->score>=cost){
         game->score->score-=cost;
         game->score->prints();
-        TowerSmall * t = new TowerSmall(QCursor::pos().x()-100,QCursor::pos().y()-130);
+        TowerSmall * t = new TowerSmall(QCursor::pos().x()-150,QCursor::pos().y()-150);
         scene()->addItem(t);
         setCursor(Qt::ArrowCursor);
     }

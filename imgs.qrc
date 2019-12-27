@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/imgs">
         <file>towerRound_sampleF_E.png</file>
-        <file>../blue_boxCross.png</file>
         <file>character_zombie_walk1.png</file>
         <file>character_zombie_walk2.png</file>
         <file>character_zombie_walk3.png</file>
@@ -45,8 +44,6 @@
         <file>character_femaleAdventurer_walk1.png</file>
         <file>character_femaleAdventurer_walk0.png</file>
         <file>bomb.png</file>
-        <file>black3.png</file>
-        <file>black2.png</file>
         <file>black.png</file>
         <file>3hearts.png</file>
         <file>2hearts.png</file>
@@ -67,5 +64,6 @@
         <file>tank.png</file>
         <file>rocket.png</file>
         <file>plants-vs-zombies-background-7.jpg</file>
+        <file>blue_boxCross.png</file>
     </qresource>
 </RCC>
