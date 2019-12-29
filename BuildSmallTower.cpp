@@ -26,7 +26,7 @@ BuildSmallTower::BuildSmallTower():QObject(), QGraphicsPixmapItem()
 void BuildSmallTower::wait()
 {
     qreal op;
-    if(game->score->score>= cost){
+    if(game->score->score>= cost && game->started && !game->lost){
         op=static_cast <qreal>(1);
     }
     else{
@@ -38,7 +38,7 @@ void BuildSmallTower::wait()
 
 void BuildSmallTower::mousePressEvent(QGraphicsSceneMouseEvent *event){
     // Kada kliknemo na ikonicu za izgradnju kule i drzimo kursor on postaje kula
-    if(game->score->score>=cost){
+    if(game->score->score>=cost && game->started && !game->lost){
         QPixmap img(":/imgs/towerRound_sampleF_E.png");
         setCursor(img.scaled(QSize(200,200)));
     }
@@ -46,7 +46,7 @@ void BuildSmallTower::mousePressEvent(QGraphicsSceneMouseEvent *event){
 }
 void BuildSmallTower::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     //Kada pustimo kursor na nekoj lokaciji na njoj se pravi kula
-    if(game->score->score>=cost){
+    if(game->score->score>=cost && game->started && !game->lost){
         game->score->score-=cost;
         game->score->prints();
         TowerSmall * t = new TowerSmall(QCursor::pos().x()-150,QCursor::pos().y()-150);

@@ -24,6 +24,7 @@
 #include "Lifes.h"
 #include "BuildRemover.h"
 #include <iostream>
+#include "Play.h"
 #include "PlayAgain.h"
 #include"Score.h"
 #include"Game.h"
@@ -173,28 +174,53 @@ Game::Game(QWidget *parent){
     Coins* coins=new Coins();
     scene->addItem(coins);
 
+    QPixmap black(":/imgs/black.png");
+    background = new QGraphicsPixmapItem();
+    background->setPixmap(black.scaled(QSize(1366,350)));
+    background->setPos(0,150);
+    this->scene->addItem(background);
+
+    play = new Play();
+    this->scene->addItem(play);
+
+
+
     //Protivnici se stvaraju na nekom intervalu
     timer = new QTimer();
     QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn()));
-    timer->start(5000);
+  //  timer->start(5000);
+
+}
+
+void Game::begin(){
+
+    if(!this->started){
+        this->scene->removeItem(background);
+        delete background;
+
+        this->started=true;
+        this->scene->removeItem(play);
+    }
+    this->timer->start(5000);
 
 }
 
 void Game::reset()
 {
    //Vracamo pocetne vrednosti i izgled ekrana i startujemo tajmer za pravljenje novih protivnika
-   this->score->score=10;
-   this->score->prints();
-   this->player->lifes=3;
-   this->timer->start();
-   this->scene->removeItem(background);
-   delete background;
-   this->scene->removeItem(game_end);
-   delete game_end;
-   this->scene->removeItem(pa);
-   delete pa;
-   this->timer->start();
+    this->score->score=10;
+    this->score->prints();
+    this->player->lifes=3;
+    this->lost=false;
 
+    this->scene->removeItem(background);
+    delete background;
+    this->scene->removeItem(game_end);
+    delete game_end;
+    this->scene->removeItem(pa);
+    delete pa;
+
+    this->timer->start();
 }
 
 
@@ -203,6 +229,7 @@ void Game::game_over(){
     //Kraj igre-zaustavljamo pravljenje novih protivnika
     //ispisujemo poruku o kraju i brisemo sve napravljene neprijatelje i oruzja
     this->timer->stop();
+    this->lost=true;
 
     QPixmap black(":/imgs/black.png");
     background = new QGraphicsPixmapItem();
@@ -219,6 +246,7 @@ void Game::game_over(){
     pa = new PlayAgain();
     this->scene->addItem(pa);
 
+    //Brisemo sve sto je igrac postavio na scenu
     for (auto item : this->scene->items())
         {
             if (typeid (*item) == typeid (Enemy)

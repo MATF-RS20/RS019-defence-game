@@ -25,7 +25,7 @@ BuildHole::BuildHole():QObject(), QGraphicsPixmapItem()
  void BuildHole::wait()
  {
      qreal op;
-     if(game->score->score>= cost){
+     if(game->score->score>= cost && game->started && !game->lost){
          op=static_cast <qreal>(1);
      }
      else{
@@ -36,7 +36,7 @@ BuildHole::BuildHole():QObject(), QGraphicsPixmapItem()
  }
 void BuildHole::mousePressEvent(QGraphicsSceneMouseEvent *event){
     // Kada kliknemo na ikonicu za izgradnju kule i drzimo kursor on postaje kula
-    if(game->score->score>=cost){
+    if(game->score->score>=cost && game->started && !game->lost){
         QPixmap img(":/imgs/portal_orange.png");
         setCursor(img.scaled(QSize(75,65)));
     }
@@ -44,7 +44,7 @@ void BuildHole::mousePressEvent(QGraphicsSceneMouseEvent *event){
 }
 void BuildHole::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     //Kada pustimo kursor na nekoj lokaciji na njoj se pravi kula
-    if(game->score->score>=cost){
+    if(game->score->score>=cost && game->started && !game->lost){
         game->score->score-=cost;
         game->score->prints();
         Hole * m = new Hole(QCursor::pos().x()-100,QCursor::pos().y()-100);

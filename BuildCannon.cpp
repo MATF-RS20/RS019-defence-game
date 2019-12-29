@@ -25,7 +25,7 @@ BuildCannon::BuildCannon():QObject(), QGraphicsPixmapItem()
 void BuildCannon::wait()
 {
     qreal op;
-    if(game->score->score>= cost){
+    if(game->score->score>= cost && game->started && !game->lost){
         op=static_cast <qreal>(1);
     }
     else{
@@ -37,7 +37,7 @@ void BuildCannon::wait()
 
 void BuildCannon::mousePressEvent(QGraphicsSceneMouseEvent *event){
     // Kada kliknemo na ikonicu za izgradnju topa i drzimo kursor on postaje top
-    if(game->score->score>=cost){
+    if(game->score->score>=cost && game->started && !game->lost){
         QPixmap img(":/imgs/enemy_ufoPurpleWeapon.png");
         setCursor(img.scaled(QSize(50,50)));
     }
@@ -46,7 +46,7 @@ void BuildCannon::mousePressEvent(QGraphicsSceneMouseEvent *event){
 }
 void BuildCannon::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     //Kada pustimo kursor na nekoj lokaciji na njoj se pravi top
-    if(game->score->score>=cost){
+    if(game->score->score>=cost && game->started && !game->lost){
         game->score->score-=cost;
         game->score->prints();
         Cannon * cannon = new Cannon(QCursor::pos().x()-100,QCursor::pos().y()-100);

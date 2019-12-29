@@ -26,7 +26,7 @@ BuildTank::BuildTank():QObject(), QGraphicsPixmapItem()
 void BuildTank::wait()
 {
     qreal op;
-    if(game->score->score>= cost){
+    if(game->score->score>= cost && game->started && !game->lost){
         op=static_cast <qreal>(1);
     }
     else{
@@ -37,7 +37,7 @@ void BuildTank::wait()
 }
 void BuildTank::mousePressEvent(QGraphicsSceneMouseEvent *event){
     // Kada kliknemo na ikonicu za izgradnju tenka i drzimo kursor on postaje tenk
-    if(game->score->score>=cost){
+    if(game->score->score>=cost && game->started && !game->lost){
         QPixmap img(":/imgs/tank.png");
         setCursor(img.scaled(QSize(70,55)));
     }
@@ -47,7 +47,7 @@ void BuildTank::mousePressEvent(QGraphicsSceneMouseEvent *event){
 void BuildTank::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     //Kada pustimo kursor na nekoj lokaciji na njoj se pravi tenk
 
-    if(game->score->score>=cost){
+    if(game->score->score>=cost && game->started && !game->lost){
         game->score->score-=cost;
         game->score->prints();
         Tank * t = new Tank(QCursor::pos().x()-135,QCursor::pos().y()-150);

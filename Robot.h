@@ -12,7 +12,7 @@ public:
     Robot();
     int n = 1;
     int HP = 1;
-    int k = 8;
+    int k = 7;
     int cost=3;
     bool escaped = false;
    // static std::vector<class Enemy*>cord_list; // Lista (y) kordinata protivnika

@@ -28,7 +28,7 @@ Zombie::Zombie():QObject(),  QGraphicsPixmapItem()
     setPos(-70,random_n);
     //Crtamo protivnika
     QPixmap img(":/imgs/character_femaleAdventurer_walk0.png");
-    setPixmap(img.scaled(QSize(80,80)));
+    setPixmap(img.scaled(QSize(75,75)));
 
     // Timer koji pomera protivnika
     QTimer * timer = new QTimer(this);
@@ -84,18 +84,9 @@ void Zombie::move(){
         QPixmap img(":/imgs/zombie_1.png");
         setPixmap(img.scaled(QSize(80,80)));
         this->n=2;
-    }else if(this->n==2){
-        QPixmap img(":/imgs/zombie_2.png");
-        setPixmap(img.scaled(QSize(80,80)));
-        this->n=3;
-    }else if(this->n==3){
-        QPixmap img(":/imgs/zombie_3.png");
-        setPixmap(img.scaled(QSize(80,80)));
-        this->n=4;
     }else {
-        QPixmap img(":/imgs/zombie_4.png");
+        QPixmap img(":/imgs/zombie_2.png");
         setPixmap(img.scaled(QSize(80,80)));
         this->n=1;
     }
-
 }

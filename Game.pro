@@ -45,7 +45,8 @@ SOURCES += \
     Zombie.cpp \
     TankRocket.cpp \
     Tank.cpp \
-    BuildTank.cpp
+    BuildTank.cpp \
+    Play.cpp
 
 HEADERS += \
     BuildSmallTower.h \
@@ -76,7 +77,8 @@ HEADERS += \
     Zombie.h \
     TankRocket.h \
     Tank.h \
-    BuildTank.h
+    BuildTank.h \
+    Play.h
 
 FORMS += \
     mainwindow.ui
