@@ -24,8 +24,12 @@ extern Game* game;
 Robot::Robot():QObject(),  QGraphicsPixmapItem()
 {
 
-    int random_n = rand() % 500; // sa %500 ogranicavamo da se protivnik ne pravi na Y>500
-    setPos(-70,random_n);
+
+    //Biramo na slucajan nacin jednu od 6 mogucih pozicija za stvaranje protivnika
+    int ys[6]={100,170,240,310,380,450};
+    int random_n = rand() % 6;
+    setPos(-70,ys[random_n]);
+
     //Crtamo protivnika
     QPixmap img(":/imgs/character_robot_walk0.png");
     setPixmap(img.scaled(QSize(80,80)));
