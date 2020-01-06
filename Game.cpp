@@ -44,6 +44,15 @@ QGraphicsPixmapItem* UIButton(int x,int y){
         return box;
 
 }
+
+QGraphicsPixmapItem* print_wire(int y){
+    QPixmap silver_wire(":/imgs/lighting_blue.png");
+    QGraphicsPixmapItem * wire = new QGraphicsPixmapItem();
+    wire->setPixmap(silver_wire.scaled(QSize(30,30)));
+    wire->setPos(950,y);
+    return wire;
+}
+
 Game::Game(QWidget *parent){
     //Pravimo scenu za crtanje objekata
     scene = new QGraphicsScene();
@@ -51,6 +60,7 @@ Game::Game(QWidget *parent){
     //Pravimo igraca
     Player * player = new Player();
     scene->addItem(player);
+
 
     //Prikazujemo scenu
     QGraphicsView * view = new QGraphicsView(scene);
@@ -72,6 +82,14 @@ Game::Game(QWidget *parent){
     // Dugme za exit
     ExitBtn * exit = new ExitBtn();
     scene->addItem(exit);
+
+    //Dodaje se linija nakon koje korisnik gubi zivot ukoliko je neprijatelj dodirne
+    QGraphicsPixmapItem * wire;
+    for(int i=0;i<600;i+=20){
+        wire=print_wire(i);
+        scene->addItem(wire);
+    }
+
     //Panel za odabir kula (ukras, zato ne pravimo zasebnu klasu)
     QPixmap panel(":/imgs/blue_panel.png");
     QGraphicsPixmapItem * box_panel = new QGraphicsPixmapItem();
@@ -173,6 +191,8 @@ Game::Game(QWidget *parent){
     // Dodaje se novcic koji se okrece
     Coins* coins=new Coins();
     scene->addItem(coins);
+
+
 
     QPixmap black(":/imgs/black.png");
     background = new QGraphicsPixmapItem();

@@ -80,12 +80,16 @@ void Robot::move(){
 
     setPos(x()+k,y());
 
-    if(pos().x() > 800 && !(this->escaped)){
+    if(pos().x() > 930 && !(this->escaped) && (this->k<=7)){
         Player::lifes-=1;
         this->escaped = true;
         if(Player::lifes<=0){
             game->game_over();
         }
+        this->k*=2;
+    }
+    if(pos().x() > 1250 && this->n<=8){
+        this->n=9;
     }
     //Sa svakim otkucajem tajmere protivnik se pomera i menja se slika hoda
 
@@ -122,6 +126,20 @@ void Robot::move(){
         setPixmap(img.scaled(QSize(80,80)));
         this->n=1;
 
+    }else if(this->n==9){
+        setPos(x()-5,y()+20);
+        QPixmap img(":/imgs/puffSmall.png");
+        setPixmap(img.scaled(QSize(50,50)));
+        this->n=10;
+    }
+    else if(this->n==10){
+         setPos(x()+5,y()+10);
+         QPixmap img(":/imgs/puffSmall.png");
+         setPixmap(img.scaled(QSize(30,30)));
+         this->n=11;
+    }
+    else if(this->n==11){
+        this->deleteLater();
     }
 }
 

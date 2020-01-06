@@ -78,13 +78,19 @@ void Enemy::move(){
         }
 
     setPos(x()+k,y());
-    if(pos().x() > 800 && !(this->escaped)){
+
+    if(pos().x() > 930 && !(this->escaped) && (this->k<=3)){
         Player::lifes-=1;
         this->escaped = true;
         if(Player::lifes<=0){
             game->game_over();
         }
+        this->k*=2;
     }
+    if(pos().x() > 1250 && this->n<=3){
+        this->n=4;
+    }
+
     //Sa svakim otkucajem tajmere protivnik se pomera i menja se slika hoda
     if (this->n == 1){
         QPixmap img(":/imgs/character_zombie_walk2.png");
@@ -99,6 +105,24 @@ void Enemy::move(){
         setPixmap(img.scaled(QSize(80,80)));
         this->n=1;
     }
+    else if(this->n==4){
+        setPos(x()-5,y()+20);
+        QPixmap img(":/imgs/puffSmall.png");
+        setPixmap(img.scaled(QSize(50,50)));
+        this->n=5;
+    }
+    else if(this->n==5){
+         setPos(x()+5,y()+10);
+             QPixmap img(":/imgs/puffSmall.png");
+             setPixmap(img.scaled(QSize(30,30)));
+             this->n=6;
+    }
+    else if(this->n==6){
+
+        this->deleteLater();
+    }
+
+
 
 }
 

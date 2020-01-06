@@ -64,5 +64,7 @@
         <file>plants-vs-zombies-background-7.jpg</file>
         <file>blue_boxCross.png</file>
         <file>play.png</file>
+        <file>lighting_blue.png</file>
+        <file>puffSmall.png</file>
     </qresource>
 </RCC>
