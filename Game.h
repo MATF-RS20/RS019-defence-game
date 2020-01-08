@@ -15,7 +15,6 @@
 class Game: public QGraphicsView{
 public:
     Game(QWidget * parent=0);
-    QGraphicsPixmapItem * background;
     QGraphicsPixmapItem * game_end;
     Play* play;
     PlayAgain* pa;

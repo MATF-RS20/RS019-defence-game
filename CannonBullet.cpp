@@ -7,15 +7,14 @@
 #include "Robot.h"
 #include "WomanEnemy.h"
 #include "Zombie.h"
-
 CannonBullet1::CannonBullet1(int x,int y):QObject(),QGraphicsPixmapItem(){
     QPixmap img(":/imgs/m1.png");
     setPixmap(img.scaled(QSize(40,10)));
     setPos(x-35,y+5);
     QTimer * timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(move_bullet1()));
-    timer->start(100);
 
+    timer->start(100);
 
 }
 CannonBullet2::CannonBullet2(int x,int y):QObject(),QGraphicsPixmapItem(){
@@ -25,7 +24,6 @@ CannonBullet2::CannonBullet2(int x,int y):QObject(),QGraphicsPixmapItem(){
     QTimer * timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(move_bullet2()));
     timer->start(100);
-
 
 }
 

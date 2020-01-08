@@ -11,6 +11,10 @@
 #include <vector>
 #include <iostream>
 #include <stdlib.h>
+
+#include "Game.h"
+
+extern Game* game;
 Cannon::Cannon(int x,int y):QObject(), QGraphicsPixmapItem()
 {
     // Pravimo mali topa na datoj lokaciji
@@ -25,6 +29,7 @@ Cannon::Cannon(int x,int y):QObject(), QGraphicsPixmapItem()
 
 void Cannon::fire()
 {
+    if(!game->lost){
     // Na odredjenom vremenskom intervalu top puca
    CannonBullet1 * cb1 = new CannonBullet1(x(),y());
    CannonBullet2 * cb2 = new CannonBullet2(x(),y());
@@ -39,5 +44,5 @@ void Cannon::fire()
                 return;
             }
         }
-
+    }
 }

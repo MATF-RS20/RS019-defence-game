@@ -10,6 +10,9 @@
 #include <vector>
 #include <iostream>
 #include <stdlib.h>
+#include "Game.h"
+
+extern Game* game;
 TowerSmall::TowerSmall(int x,int y):QObject(), QGraphicsPixmapItem()
 {
     // Pravimo malu kulu na datoj lokaciji
@@ -25,6 +28,7 @@ TowerSmall::TowerSmall(int x,int y):QObject(), QGraphicsPixmapItem()
 
 void TowerSmall::fire()
 {
+    if(!game->lost){
     // Na odredjenom vremenskom intervalu kula puca
    TowerSmallBullet * sb = new TowerSmallBullet(x(),y());
     scene()->addItem(sb);
@@ -37,5 +41,5 @@ void TowerSmall::fire()
                 return;
             }
         }
-
+    }
 }

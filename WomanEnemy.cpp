@@ -44,8 +44,9 @@ WomanEnemy::WomanEnemy():QObject(),  QGraphicsPixmapItem()
 
 void WomanEnemy::move(){
     //HIT DETECTION preuzet sa Stackoverflow-a
-
+    if(!game->lost){
     QList<QGraphicsItem *> colliding_items = collidingItems();
+    if(!this->escaped){
     for (int i = 0, n = colliding_items.size(); i < n; ++i){
         if (typeid(*(colliding_items[i])) == typeid(TowerSmallBullet)
                 || typeid(*(colliding_items[i])) == typeid(CannonBullet1)
@@ -76,11 +77,12 @@ void WomanEnemy::move(){
             }
 
         }
+    }
     setPos(x()+k,y());
     if(pos().x() > 930 && !(this->escaped) && (this->k<=6)){
         Player::lifes-=1;
         this->escaped = true;
-        if(Player::lifes<=0){
+        if(Player::lifes==0){
             game->game_over();
         }
         this->k*=2;
@@ -136,5 +138,5 @@ void WomanEnemy::move(){
     else if(this->n==11){
         this->deleteLater();
     }
-
+    }
 }

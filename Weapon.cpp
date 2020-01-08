@@ -10,7 +10,9 @@
 #include "Enemy.h"
 #include "Robot.h"
 #include "Remover.h"
+#include "Game.h"
 
+extern Game* game;
 Weapon::Weapon(int x,int y):QObject(), QGraphicsPixmapItem()
 {
    // Pravimo oruzje na datoj lokaciji
@@ -30,6 +32,7 @@ Weapon::Weapon(int x,int y):QObject(), QGraphicsPixmapItem()
 
 void Weapon::fire()
 {
+    if(!game->lost){
     // Na odredjenom vremenskom intervalu oruzje puca
    WeaponBullet1 * tb1 = new WeaponBullet1(x(),y());
    WeaponBullet2 * tb2 = new WeaponBullet2(x(),y());
@@ -46,6 +49,7 @@ void Weapon::fire()
                 return;
             }
         }
+    }
 }
 
 

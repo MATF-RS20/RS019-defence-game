@@ -193,16 +193,8 @@ Game::Game(QWidget *parent){
     scene->addItem(coins);
 
 
-
-    QPixmap black(":/imgs/black.png");
-    background = new QGraphicsPixmapItem();
-    background->setPixmap(black.scaled(QSize(1366,350)));
-    background->setPos(0,150);
-    this->scene->addItem(background);
-
     play = new Play();
     this->scene->addItem(play);
-
 
 
     //Protivnici se stvaraju na nekom intervalu
@@ -214,10 +206,7 @@ Game::Game(QWidget *parent){
 
 void Game::begin(){
 
-    if(!this->started){
-        this->scene->removeItem(background);
-        delete background;
-
+     if(!this->started){
         this->started=true;
         this->scene->removeItem(play);
     }
@@ -228,45 +217,17 @@ void Game::begin(){
 void Game::reset()
 {
    //Vracamo pocetne vrednosti i izgled ekrana i startujemo tajmer za pravljenje novih protivnika
+
     this->score->score=10;
     this->score->prints();
     this->player->lifes=3;
     this->lost=false;
 
-    this->scene->removeItem(background);
-    delete background;
     this->scene->removeItem(game_end);
     delete game_end;
     this->scene->removeItem(pa);
     delete pa;
 
-    this->timer->start();
-}
-
-
-void Game::game_over(){
-
-    //Kraj igre-zaustavljamo pravljenje novih protivnika
-    //ispisujemo poruku o kraju i brisemo sve napravljene neprijatelje i oruzja
-    this->timer->stop();
-    this->lost=true;
-
-    QPixmap black(":/imgs/black.png");
-    background = new QGraphicsPixmapItem();
-    background->setPixmap(black.scaled(QSize(1366,350)));
-    background->setPos(0,150);
-    this->scene->addItem(background);
-
-    QPixmap end(":/imgs/game_over.png");
-    game_end = new QGraphicsPixmapItem();
-    game_end->setPixmap(end.scaled(QSize(600,100)));
-    game_end->setPos(350,200);
-    this->scene->addItem(game_end);
-
-    pa = new PlayAgain();
-    this->scene->addItem(pa);
-
-    //Brisemo sve sto je igrac postavio na scenu
     for (auto item : this->scene->items())
         {
             if (typeid (*item) == typeid (Enemy)
@@ -286,11 +247,31 @@ void Game::game_over(){
                || typeid (*item) == typeid (CannonBullet1)
                || typeid (*item) == typeid (CannonBullet2)
                || typeid (*item) == typeid (TowerSmallBullet))
-            {
+          {
                 this->scene->removeItem(item);
                 delete item;
             }
         }
+
+    this->timer->start();
+}
+
+
+void Game::game_over(){
+
+    //Kraj igre-zaustavljamo pravljenje novih protivnika
+    //ispisujemo poruku o kraju
+    this->timer->stop();
+    this->lost=true;
+
+    QPixmap end(":/imgs/game_over.png");
+    game_end = new QGraphicsPixmapItem();
+    game_end->setPixmap(end.scaled(QSize(600,100)));
+    game_end->setPos(350,200);
+    this->scene->addItem(game_end);
+
+    pa = new PlayAgain();
+    this->scene->addItem(pa);
 
 }
 

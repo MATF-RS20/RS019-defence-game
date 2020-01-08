@@ -8,6 +8,11 @@
 #include <vector>
 #include <iostream>
 #include <stdlib.h>
+#include "Game.h"
+#include "Remover.h"
+
+extern Game* game;
+
 Tank::Tank(int x,int y):QObject(), QGraphicsPixmapItem()
 {
     // Pravimo tenk na datoj lokaciji
@@ -23,8 +28,19 @@ Tank::Tank(int x,int y):QObject(), QGraphicsPixmapItem()
 
 void Tank::fire()
 {
-    // Na odredjenom vremenskom intervalu tenk puca
-   TankRocket * sb = new TankRocket(x(),y());
-    scene()->addItem(sb);
+    if(!game->lost){
+        // Na odredjenom vremenskom intervalu tenk puca
+        TankRocket * sb = new TankRocket(x(),y());
+        scene()->addItem(sb);
+    }
+
+    QList<QGraphicsItem *> colliding_items = collidingItems();
+        for (int i = 0, n = colliding_items.size(); i < n; ++i){
+            if (typeid(*(colliding_items[i])) == typeid(Remover) ){
+                scene()->removeItem(this);
+                delete this;
+                return;
+            }
+        }
 
 }
