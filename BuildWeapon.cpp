@@ -26,7 +26,7 @@ BuildWeapon::BuildWeapon():QObject(), QGraphicsPixmapItem()
 void BuildWeapon::wait()
 {
     qreal op;
-    if(game->score->score>= cost  && game->started && !game->lost){
+    if(game->score->score>= cost  && game->started && !game->lost && !game->pause){
         op=static_cast <qreal>(1);
     }
     else{
@@ -38,7 +38,7 @@ void BuildWeapon::wait()
 }
 void BuildWeapon::mousePressEvent(QGraphicsSceneMouseEvent *event){
     // Kada kliknemo na ikonicu za izgradnju oruzje i drzimo kursor on postaje oruzje
-    if(game->score->score>=cost && game->started && !game->lost){
+    if(game->score->score>=cost && game->started && !game->lost && !game->pause){
         QPixmap img(":/imgs/weapon2.png");
         setCursor(img.scaled(QSize(40,40)));
 
@@ -46,7 +46,7 @@ void BuildWeapon::mousePressEvent(QGraphicsSceneMouseEvent *event){
 }
 void BuildWeapon::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     //Kada pustimo kursor na nekoj lokaciji na njoj se pravi oruzje
-    if(game->score->score>=cost && game->started && !game->lost){
+    if(game->score->score>=cost && game->started && !game->lost && !game->pause){
         game->score->score-=cost;
         game->score->prints();
         Weapon * weapon = new Weapon(QCursor::pos().x()-85,QCursor::pos().y()-85);

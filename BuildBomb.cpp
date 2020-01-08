@@ -28,7 +28,7 @@ BuildBomb::BuildBomb():QObject(), QGraphicsPixmapItem()
 void BuildBomb::wait()
 {
     qreal op;
-    if(game->score->score>= cost && game->started && !game->lost){
+    if(game->score->score>= cost && game->started && !game->lost  && !game->pause){
         op=static_cast <qreal>(1);
     }
     else{
@@ -39,7 +39,7 @@ void BuildBomb::wait()
 }
 void BuildBomb::mousePressEvent(QGraphicsSceneMouseEvent *event){
     // Kada kliknemo na ikonicu za izgradnju bombe , kursor postaje bomba
-    if(game->score->score>=cost && game->started && !game->lost){
+    if(game->score->score>=cost && game->started && !game->lost && !game->pause){
         QPixmap img(":/imgs/bomb.png");
         setCursor(img.scaled(QSize(50,50)));
     }
@@ -47,7 +47,7 @@ void BuildBomb::mousePressEvent(QGraphicsSceneMouseEvent *event){
 }
 void BuildBomb::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     //Kada pustimo kursor na nekoj lokaciji na njoj se pravi bomba
-    if(game->score->score>=cost && game->started && !game->lost){
+    if(game->score->score>=cost && game->started && !game->lost && !game->pause){
         game->score->score-=cost;
         game->score->prints();
         Bomb * b = new Bomb(QCursor::pos().x()-100,QCursor::pos().y()-100);

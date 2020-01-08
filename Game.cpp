@@ -36,6 +36,8 @@
 #include "TankRocket.h"
 #include "CannonBullet.h"
 #include "BuildTank.h"
+#include "Continue.h"
+#include "Pause.h"
 QGraphicsPixmapItem* UIButton(int x,int y){
     QPixmap img(":/imgs/blue_button06.png");
         QGraphicsPixmapItem * box = new QGraphicsPixmapItem();
@@ -192,6 +194,9 @@ Game::Game(QWidget *parent){
     Coins* coins=new Coins();
     scene->addItem(coins);
 
+    //Dodavanje dugmeta za pauziranje
+    Pause* p=new Pause();
+    scene->addItem(p);
 
     play = new Play();
     this->scene->addItem(play);
@@ -212,6 +217,17 @@ void Game::begin(){
     }
     this->timer->start(10000);
 
+}
+
+void Game::continue_game(){
+    this->pause=false;
+    delete c;
+}
+
+void Game::paused(){
+    this->pause=true;
+    c=new Continue();
+    this->scene->addItem(c);
 }
 
 void Game::reset()

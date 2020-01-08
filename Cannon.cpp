@@ -29,7 +29,7 @@ Cannon::Cannon(int x,int y):QObject(), QGraphicsPixmapItem()
 
 void Cannon::fire()
 {
-    if(!game->lost){
+    if(!game->lost && !game->pause){
     // Na odredjenom vremenskom intervalu top puca
    CannonBullet1 * cb1 = new CannonBullet1(x(),y());
    CannonBullet2 * cb2 = new CannonBullet2(x(),y());

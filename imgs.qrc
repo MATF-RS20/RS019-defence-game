@@ -65,5 +65,7 @@
         <file>play.png</file>
         <file>lighting_blue.png</file>
         <file>puffSmall.png</file>
+        <file>continue.png</file>
+        <file>pause.png</file>
     </qresource>
 </RCC>

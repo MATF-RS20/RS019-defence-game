@@ -42,7 +42,7 @@ Zombie::Zombie():QObject(),  QGraphicsPixmapItem()
 
 void Zombie::move(){
     //HIT DETECTION preuzet sa Stackoverflow-a
-    if(!game->lost){
+    if(!game->lost && !game->pause){
     QList<QGraphicsItem *> colliding_items = collidingItems();
     if(!this->escaped){
     for (int i = 0, n = colliding_items.size(); i < n; ++i){

@@ -7,7 +7,9 @@
 #include "Robot.h"
 #include "WomanEnemy.h"
 #include "Zombie.h"
+#include "Game.h"
 
+extern Game* game;
 WeaponBullet1::WeaponBullet1(int x,int y):QObject(),QGraphicsPixmapItem(){
     QPixmap img(":/imgs/laser5.png");
     setPixmap(img.scaled(QSize(4, 20)));
@@ -42,17 +44,20 @@ WeaponBullet3::WeaponBullet3(int x,int y):QObject(),QGraphicsPixmapItem(){
 void WeaponBullet1::move_bullet1(){
     // COALISION DETECTION : preuzeto sa STACKOVERFLOW
     QList<QGraphicsItem *> colliding_items = collidingItems();
-        for (int i = 0, n = colliding_items.size(); i < n; ++i){
-            if (typeid(*(colliding_items[i])) == typeid(Enemy)
-                    || typeid(*(colliding_items[i])) == typeid(Robot)
-                    || typeid(*(colliding_items[i])) == typeid(Zombie)
-                    || typeid(*(colliding_items[i])) == typeid(WomanEnemy)){
-                scene()->removeItem(this);
-                delete this;
-                return;
-            }
+    for (int i = 0, n = colliding_items.size(); i < n; ++i){
+        if (typeid(*(colliding_items[i])) == typeid(Enemy)
+                || typeid(*(colliding_items[i])) == typeid(Robot)
+                || typeid(*(colliding_items[i])) == typeid(Zombie)
+                || typeid(*(colliding_items[i])) == typeid(WomanEnemy)){
+            scene()->removeItem(this);
+            delete this;
+            return;
         }
-    setPos(x(),y()-40);
+    }
+    if(!game->pause){
+        setPos(x(),y()-40);
+    }
+
     if(pos().x() <= 0 ){
         scene()->removeItem(this);
         delete this;
@@ -63,17 +68,20 @@ void WeaponBullet1::move_bullet1(){
 void WeaponBullet2::move_bullet2(){
     // COALISION DETECTION : preuzeto sa STACKOVERFLOW
     QList<QGraphicsItem *> colliding_items = collidingItems();
-        for (int i = 0, n = colliding_items.size(); i < n; ++i){
-            if (typeid(*(colliding_items[i])) == typeid(Enemy)
-                    || typeid(*(colliding_items[i])) == typeid(Robot)
-                    || typeid(*(colliding_items[i])) == typeid(Zombie)
-                    || typeid(*(colliding_items[i])) == typeid(WomanEnemy)){
-                scene()->removeItem(this);
-                delete this;
-                return;
-            }
+    for (int i = 0, n = colliding_items.size(); i < n; ++i){
+        if (typeid(*(colliding_items[i])) == typeid(Enemy)
+                || typeid(*(colliding_items[i])) == typeid(Robot)
+                || typeid(*(colliding_items[i])) == typeid(Zombie)
+                || typeid(*(colliding_items[i])) == typeid(WomanEnemy)){
+            scene()->removeItem(this);
+            delete this;
+            return;
         }
-    setPos(x(),y()+40);
+    }
+    if(!game->pause){
+        setPos(x(),y()+40);
+    }
+
     if(pos().x() <= 0 ){
         scene()->removeItem(this);
         delete this;
@@ -86,17 +94,20 @@ void WeaponBullet2::move_bullet2(){
 void WeaponBullet3::move_bullet3(){
     // COALISION DETECTION : preuzeto sa STACKOVERFLOW
     QList<QGraphicsItem *> colliding_items = collidingItems();
-        for (int i = 0, n = colliding_items.size(); i < n; ++i){
-            if (typeid(*(colliding_items[i])) == typeid(Enemy)
-                    || typeid(*(colliding_items[i])) == typeid(Robot)
-                    || typeid(*(colliding_items[i])) == typeid(Zombie)
-                    || typeid(*(colliding_items[i])) == typeid(WomanEnemy)){
-                scene()->removeItem(this);
-                delete this;
-                return;
-            }
+    for (int i = 0, n = colliding_items.size(); i < n; ++i){
+        if (typeid(*(colliding_items[i])) == typeid(Enemy)
+                || typeid(*(colliding_items[i])) == typeid(Robot)
+                || typeid(*(colliding_items[i])) == typeid(Zombie)
+                || typeid(*(colliding_items[i])) == typeid(WomanEnemy)){
+            scene()->removeItem(this);
+            delete this;
+            return;
         }
-    setPos(x()-15,y());
+    }
+    if(!game->pause){
+        setPos(x()-15,y());
+    }
+
     if(pos().x() <= 0 ){
         scene()->removeItem(this);
         delete this;

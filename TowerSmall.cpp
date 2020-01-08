@@ -28,7 +28,7 @@ TowerSmall::TowerSmall(int x,int y):QObject(), QGraphicsPixmapItem()
 
 void TowerSmall::fire()
 {
-    if(!game->lost){
+    if(!game->lost && !game->pause){
     // Na odredjenom vremenskom intervalu kula puca
    TowerSmallBullet * sb = new TowerSmallBullet(x(),y());
     scene()->addItem(sb);

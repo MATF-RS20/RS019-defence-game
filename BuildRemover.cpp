@@ -7,6 +7,9 @@
 #include <QTimer>
 #include "Remover.h"
 #include <iostream>
+#include "Game.h"
+
+extern Game* game;
 BuildRemover::BuildRemover():QObject(), QGraphicsPixmapItem()
 {
     // Pravimo ikonicu na ekranu za izgradnju rupa
@@ -18,16 +21,22 @@ BuildRemover::BuildRemover():QObject(), QGraphicsPixmapItem()
 void BuildRemover::mousePressEvent(QGraphicsSceneMouseEvent *event){
     // Kada kliknemo na ikonicu za izgradnju kule i drzimo kursor on postaje kula
 
-     QPixmap img(":/imgs/remover.png");
-     setCursor(img.scaled(QSize(35,35)));
+    if(!game->pause && !game->lost){
+        QPixmap img(":/imgs/remover.png");
+        setCursor(img.scaled(QSize(35,35)));
+    }
+
 
 }
 void BuildRemover::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     //Kada pustimo kursor na nekoj lokaciji na njoj se pravi kula
+    if(!game->pause && !game->lost){
+        Remover * m = new Remover(QCursor::pos().x()-90,QCursor::pos().y()-90);
+        scene()->addItem(m);
+        setCursor(Qt::ArrowCursor);
 
-    Remover * m = new Remover(QCursor::pos().x()-90,QCursor::pos().y()-90);
-    scene()->addItem(m);
-    setCursor(Qt::ArrowCursor);
+        setRemover = true;
+    }
 
-    setRemover = true;
+
 }

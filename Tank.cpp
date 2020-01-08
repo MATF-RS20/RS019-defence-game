@@ -28,7 +28,7 @@ Tank::Tank(int x,int y):QObject(), QGraphicsPixmapItem()
 
 void Tank::fire()
 {
-    if(!game->lost){
+    if(!game->lost && !game->pause){
         // Na odredjenom vremenskom intervalu tenk puca
         TankRocket * sb = new TankRocket(x(),y());
         scene()->addItem(sb);

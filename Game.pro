@@ -46,7 +46,9 @@ SOURCES += \
     TankRocket.cpp \
     Tank.cpp \
     BuildTank.cpp \
-    Play.cpp
+    Play.cpp \
+    Pause.cpp \
+    Continue.cpp
 
 HEADERS += \
     BuildSmallTower.h \
@@ -78,7 +80,9 @@ HEADERS += \
     TankRocket.h \
     Tank.h \
     BuildTank.h \
-    Play.h
+    Play.h \
+    Pause.h \
+    Continue.h
 
 FORMS += \
     mainwindow.ui

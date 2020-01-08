@@ -32,7 +32,7 @@ Weapon::Weapon(int x,int y):QObject(), QGraphicsPixmapItem()
 
 void Weapon::fire()
 {
-    if(!game->lost){
+    if(!game->lost && !game->pause){
     // Na odredjenom vremenskom intervalu oruzje puca
    WeaponBullet1 * tb1 = new WeaponBullet1(x(),y());
    WeaponBullet2 * tb2 = new WeaponBullet2(x(),y());
@@ -55,32 +55,33 @@ void Weapon::fire()
 
 void Weapon::rotate(){
 
-    if (this->n == 1){
-        QPixmap img(":/imgs/weapon2.png");
-        setPixmap(img.scaled(QSize(43, 43)));
-        this->n=2;
-    }else if(this->n==2){
-        QPixmap img(":/imgs/weapon2.png");
-        QMatrix rm;
-        rm.rotate(23);
-        img = img.transformed(rm);
-        setPixmap(img.scaled(QSize(43, 43)));
-        this->n=3;
-    }else if(this->n==2){
-        QPixmap img(":/imgs/weapon2.png");
-        QMatrix rm;
-        rm.rotate(70);
-        img = img.transformed(rm);
-        setPixmap(img.scaled(QSize(43, 43)));
-        this->n=3;
-    }else if(this->n==3){
-        QPixmap img(":/imgs/weapon2.png");
-        QMatrix rm;
-        rm.rotate(43);
-        img = img.transformed(rm);
-        setPixmap(img.scaled(QSize(43, 43)));
-        this->n=1;
+    if (!game->pause){
+        if (this->n == 1){
+            QPixmap img(":/imgs/weapon2.png");
+            setPixmap(img.scaled(QSize(43, 43)));
+            this->n=2;
+        }else if(this->n==2){
+            QPixmap img(":/imgs/weapon2.png");
+            QMatrix rm;
+            rm.rotate(23);
+            img = img.transformed(rm);
+            setPixmap(img.scaled(QSize(43, 43)));
+            this->n=3;
+        }else if(this->n==2){
+            QPixmap img(":/imgs/weapon2.png");
+            QMatrix rm;
+            rm.rotate(70);
+            img = img.transformed(rm);
+            setPixmap(img.scaled(QSize(43, 43)));
+            this->n=3;
+        }else if(this->n==3){
+            QPixmap img(":/imgs/weapon2.png");
+            QMatrix rm;
+            rm.rotate(43);
+            img = img.transformed(rm);
+            setPixmap(img.scaled(QSize(43, 43)));
+            this->n=1;
+        }
     }
-
 
 }

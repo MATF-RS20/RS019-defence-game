@@ -12,6 +12,9 @@
 #include "WomanEnemy.h"
 #include "Zombie.h"
 #include "Remover.h"
+#include "Game.h"
+
+extern Game* game;
 Bomb::Bomb(int x,int y):QObject(), QGraphicsPixmapItem()
 {
     // Pravimo bombu na datoj lokaciji
@@ -25,23 +28,25 @@ Bomb::Bomb(int x,int y):QObject(), QGraphicsPixmapItem()
 void Bomb::wait()
 {
     QList<QGraphicsItem *> colliding_items = collidingItems();
-        for (int i = 0, n = colliding_items.size(); i < n; ++i){
-            if (typeid(*(colliding_items[i])) == typeid(WomanEnemy)
-                    || typeid(*(colliding_items[i])) == typeid(Enemy)
-                    || typeid(*(colliding_items[i])) == typeid(Zombie)
-                    || typeid(*(colliding_items[i])) == typeid(Robot)){
-                QTimer * timer = new QTimer(this);
-                connect(timer,SIGNAL(timeout()),this,SLOT(explosion()));
-                timer->start(200);
-            }
-            if (typeid(*(colliding_items[i])) == typeid(Remover) ){
-                scene()->removeItem(this);
-                delete this;
-                return;
-            }
+    for (int i = 0, n = colliding_items.size(); i < n; ++i){
+        if (typeid(*(colliding_items[i])) == typeid(WomanEnemy)
+                || typeid(*(colliding_items[i])) == typeid(Enemy)
+                || typeid(*(colliding_items[i])) == typeid(Zombie)
+                || typeid(*(colliding_items[i])) == typeid(Robot)){
+            QTimer * timer = new QTimer(this);
+            connect(timer,SIGNAL(timeout()),this,SLOT(explosion()));
+            timer->start(200);
         }
+        if (typeid(*(colliding_items[i])) == typeid(Remover) ){
+            scene()->removeItem(this);
+            delete this;
+            return;
+        }
+    }
 
-    setPos(x(),y());
+    if(!game->pause){
+        setPos(x(),y());
+    }
     if(pos().x() <= 0 ){
         scene()->removeItem(this);
         delete this;
