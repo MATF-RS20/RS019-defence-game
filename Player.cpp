@@ -18,7 +18,7 @@
 extern Game * game;
 void Player::spawn(){
 
-    if(!game->pause){
+    if(!game->pause && game->started){
         // Koliko kojih protivnika se stvara
         int randEnemy = rand()% 5 + 1;
         int randRobot = rand()% 5 + 1;
